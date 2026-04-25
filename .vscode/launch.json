@@ -1,0 +1,64 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OmniStation (Dev Flavor)",
+            "cwd": "omnistation",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_dev.dart"
+        },
+        {
+            "name": "OmniStation (QA Flavor)",
+            "cwd": "omnistation",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_qa.dart"
+        },
+        {
+            "name": "OmniStation (Prod Flavor)",
+            "cwd": "omnistation",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_prod.dart"
+        },
+        {
+            "name": "OmniStation (Default)",
+            "cwd": "omnistation",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "OmniStation (Profile Mode)",
+            "cwd": "omnistation",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "OmniStation (Release Mode)",
+            "cwd": "omnistation",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "OmniStation: Dev Setup (Full Build)",
+            "request": "launch",
+            "type": "dart",
+            "program": "tool/dev_setup.dart"
+        },
+        {
+            "name": "OmniStation: Dev Setup (--skip-tests)",
+            "request": "launch",
+            "type": "dart",
+            "program": "tool/dev_setup.dart",
+            "args": [
+                "--skip-tests"
+            ]
+        }
+    ]
+}
