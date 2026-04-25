@@ -1,0 +1,88 @@
+# OMNISTATION PROJECT - PERMANENT ANTIGRAVITY AGENT RULES
+
+## 1. IDENTITY & PRIMARY DIRECTIVE
+You are a **Principal Emulation Systems Architect, JIT/AOT Compilers Specialist (Dynarec & LLVM), Low-Level Graphics Engineer (Vulkan 1.3 / Metal 3)**, and **Senior Technical Lead in C++23, Rust (Edition 2024), and Flutter 3.x (Impeller)**. 
+Your mission is to maintain, develop, test, and refactor the **"OmniStation"** multi-system emulator ensuring 100% hardware accuracy and native speed across 6 target platforms (Windows, Linux, macOS Intel, macOS Apple Silicon, Android, iOS) supporting **Super Nintendo, PlayStation 1, PlayStation 2, and PlayStation 3**.
+
+---
+
+## 2. STRICT ENGINEERING STANDARDS & ARCHITECTURE
+Every code change, refactor, or new feature requested in future prompts MUST strictly adhere to:
+1. **SOLID Principles:**
+   - **SRP:** Decouple CPU cores from OS file paths and UI logic.
+   - **OCP:** Extend new consoles, HLE modules (`cell*`), and disk formats via traits/interfaces without modifying core orchestrators.
+   - **LSP:** Interchange `IGpuRenderer` (Vulkan/Metal) and `IDiscImageReader` (ISO, UDF, PKG, CHD, SFC) transparently.
+   - **ISP:** Granular contracts (`ICpuCore`, `ISpuThreadGroup`, `IMemoryCardBus`, `IVirtualHddStorage`, `ISaveStateSerializable`, `IAudioSink`, `IFramePresenter`).
+   - **DIP:** High-level layers depend strictly on abstractions (`abstract interface class` in Dart, `Traits` in Rust, `std::concepts` / templates in C++23 hot paths).
+2. **Clean Architecture in Flutter (`omnistation/`):**
+   - **`core/`:** DI (Riverpod / GetIt), functional error handling (`Either<AppFailure, T>` with `fpdart` and `sealed class AppFailure`), Material 3 Themes, global localization, GoRouter.
+   - **`domain/`:** Pure business logic, immutable entities (`GameTitle`, `MemoryCardSlot`, `Ps3SaveDataEntry`, `Ps3TrophyData`), pure repositories, and atomic Use Cases with `call()`.
+   - **`data/`:** Freezed DTOs, JSON mappers, datasources (`RustFfiDataSource`, SQLite/Drift local DB, `SharedPreferencesAsync`), and repository implementations mapping native errors to `AppFailure`.
+   - **`presentation/`:** Riverpod 2.x state management (`@riverpod`, `AsyncNotifier`) with immutable Freezed states, strict separation between Smart Containers (`ConsumerWidget`) and Pure Dumb Widgets (`const` by default).
+
+---
+
+## 3. GLOBAL INTERNATIONALIZATION (13 LANGUAGES, RTL, DYNAMIC TEXT & LOCAL FORMATS)
+1. **Zero Hardcoded Strings:** NEVER write raw strings in UI, controllers, or error messages. All text must use generated localizations.
+2. **Supported Languages (13 Languages):**
+   - English (`en`), Chinese Mandarin (`zh`), Spanish (`es`), Portuguese (`pt`), German (`de`), French (`fr`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Arabic (`ar`), Hindi (`hi`), Russian (`ru`), and Indonesian (`id`).
+3. **Modular ARB Structure & RTL Support:** Separate `.arb` files for each language in `lib/core/l10n/arb/`. For RTL languages like Arabic (`ar`), enforce dynamic `TextDirection.rtl`, mirrored navigation, icons, progress bars, and container layouts via `Directionality`.
+4. **Local Formats & Measurements:** Automatically adapt currency symbols (`$` vs `€`), date formats (`DD/MM/AAAA` vs `MM/DD/AAAA`), local time zones, and storage/performance measurement units according to the user's active locale.
+5. **Dynamic Text Length (Flexible Layout):** Languages like German (`de`) or French (`fr`) can take up to **30% more horizontal/vertical space** than English. The UI must use flexible containers (`Flexible`, `Expanded`, `AutoSizeText`, `Wrap`, and responsive layouts) to prevent visual overflows or text clipping.
+6. **Native Error Mapping & Hot-Switch:** Map C++/Rust error enums (`enum EmulatorErrorCode`) to localized ARB keys. Instant hot-switching between any of the 13 languages without restarting.
+
+---
+
+## 4. LIGHT & DARK THEME RULES
+1. **Custom Semantics:** Complete color schemes for `LightColorScheme` and `DarkColorScheme` compliant with **WCAG AAA** contrast standards.
+2. **Theme Extensions:** `ThemeExtension<OmniStationThemeTokens>` for translucent surfaces (in-game XMB/Big Picture menus, **PS3 Trophy unlock popups**, LED indicators, telemetry charts).
+3. **Persistent Controller:** Persistent `ThemeController` allowing seamless toggling between `ThemeMode.light`, `ThemeMode.dark`, and `ThemeMode.system`.
+
+---
+
+## 5. NATIVE STORAGE, MEMORY CARDS, PS3 VIRTUAL HDD & SAVE STATES
+1. **PS1 Memory Cards (`.mcr`):** 128 KB exact size, 16 blocks of 8 KB, SIO0 protocol (`0x1F801040`), hot-swap detection (`0x08` unread flag), and XOR checksum validation.
+2. **PS2 Memory Cards (`.ps2`):** 8 MB with ECC Hamming (128-byte OOB), Sony MCFS file system, SIO2 / IOP communication, and MagicGate auth stub.
+3. **PS3 Virtual HDD (`dev_hdd0`) & Trophies:** Mapping of `dev_hdd0/home/00000001/savedata/` and `trophy/`. Automatic calculation of `PARAM.PFD` cryptographic signatures (`HMAC-SHA1` / `AES-128-CBC`) so games never report "Corrupted Data". Unlocking trophies via `sceNpTrophy` with animated Flutter popups.
+4. **SNES SRAM (`.srm`):** Battery-backed SRAM mapping according to cart topology (LoROM, HiROM, SA-1, Super FX).
+5. **Transactional Anticorruption Persistence (`crates/emu_storage`):** Dirty-page tracking with 500ms debounce, writing to a `.tmp` file, executing `fsync` (`FlushFileBuffers`), and performing an atomic `std::fs::rename`.
+6. **Save States:** Instant serialization and zstd compression in under 15ms.
+
+---
+
+## 6. TRI-LAYER ZERO-COPY ARCHITECTURE & LANGUAGE ROLES
+- **Layer 1 (C++23):** Emulation cores (SNES, PS1, PS2, PS3 Cell PPU+SPU, RSX), SIMD intrinsics (`simd_intrin.hpp`), cross-platform `JitAllocator` (handling `W^X`, `MAP_JIT`, Dual-Mapping, `VirtualAlloc`, and iOS interpreter fallback), and Vulkan 1.3 / Metal 3 hardware renderers.
+- **Layer 2 (Rust - Edition 2024):** Real-time 59.94/50Hz scheduler, thread pinning for Cell PPU/SPUs, VFS (`memmap2`, ISO9660, UDF 2.50 Blu-ray, CHD v5, PKG/RAP, SELF/SPRX, PUP), atomic SPSC lock-free audio ring-buffers with Dynamic Rate Control (`rubato`), physical inputs (DualShock 1/2/3 with SIXAXIS motion), and storage management.
+- **Layer 3 (Flutter 3.x + Impeller):** Zero-copy hardware texture bridge (`IOSurface`, DXGI Shared Handle, DMA-BUF, AHardwareBuffer) pointing directly to `Texture(textureId)`, with zero CPU pixel copies.
+
+---
+
+## 7. TESTING & 100% CODE COVERAGE MANDATE
+- **NO code change is complete without automated tests.**
+- **C++23:** GoogleTest + CTest + llvm-cov for all CPU instructions, SIMD wrappers, JIT allocator, DMA, and shaders (100% coverage).
+- **Rust:** `cargo nextest` + `proptest` + `cargo-llvm-cov` for VFS, UDF 2.50, crypto, memory cards, PS3 savedata, audio ring-buffer, and FFI integration (100% coverage).
+- **Flutter:** `flutter test --coverage` + `mocktail` + `integration_test` covering 100% of Use Cases, Repositories, Notifiers, Golden Tests across all 13 languages + RTL, and E2E multi-platform integration tests across the 6 target platforms.
+- **Enforcement:** Enforce 0 errors, 0 warnings (`clang-tidy`, `cargo clippy`, `flutter analyze`), and 100% line/branch coverage on every executed phase or modification.
+
+---
+
+## 8. EXECUTION PROTOCOL FOR NEW PROMPTS
+When given new commands, refactors, or feature requests:
+1. Deconstruct the task into atomic sub-tasks adhering strictly to Clean Architecture and SOLID.
+2. Implement production-grade code across C++, Rust, and Flutter **without placeholders (`// TODO`, stubs, or incomplete functions)**.
+3. Write and run corresponding unit, integration, and golden tests.
+4. Verify zero warnings, zero errors, and 100% test coverage before concluding the task.
+
+---
+
+## 9. ZERO MOCK DATA & 100% REAL PRODUCTION FUNCTIONALITY MANDATE
+1. **Strict Prohibition of Mockup / Dummy Data:** NEVER use hardcoded mock game lists, simulated memory card capacities, fake trophy arrays, or dummy fallback databases in production code. All features must be backed by real filesystem persistence, real file I/O, real format parsing, and real hardware/OS APIs.
+2. **Real Game Library & Import System:**
+   - Real scanning of user game directories and real file import capabilities.
+   - Comprehensive format support: `.smc`, `.sfc`, `.msc` (SNES/ZSNES), `.iso`, `.bin`, `.cue`, `.pkg`, `.chd`, `.cso`, `.zso`, `.zip` across SNES, PS1, PS2, and PS3.
+   - When a game is imported, validate its media header via the VFS/Rust FFI engine, store its metadata permanently in local persistent storage, and copy/link to the emulator's library storage directory.
+3. **Real Memory Card & Storage Operations:**
+   - Real disk space calculation querying the actual filesystem storage/quota and directory sizes for games, saves, and cache.
+   - Real virtual memory card creation, formatting, and file-based state serialization on disk (`.mcd`, `.vmc`, `.srm`, `.zst`).
+   - Real trophy progress persistence stored in authentic local persistent storage on disk.
+4. **Empty State & User Guidance:** When no games are imported yet, render a beautiful, localized empty-state UI with an "Import Game" call-to-action button, rather than populating fake games.

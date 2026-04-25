@@ -1,0 +1,108 @@
+# ==============================================================================
+# OmniStation Multi-System Emulator — Git Ignore Rules
+# ==============================================================================
+
+# OS & Filesystem Cache
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Editor & IDE Directories
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*~
+.history/
+.vscode/*.log
+.vscode/.history/
+!.vscode/c_cpp_properties.json
+!.vscode/settings.json
+
+# C++ / CMake Compilation Artifacts
+/build/
+.cache/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CMakeUserPresets.json
+CTestTestfile.cmake
+Testing/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.dSYM/
+
+# Rust Cargo Workspace
+/target/
+**/*.rs.bk
+*.profraw
+*.profdata
+
+# Flutter / Dart Tooling
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+omnistation/.dart_tool/
+omnistation/.flutter-plugins
+omnistation/.flutter-plugins-dependencies
+omnistation/.pub-cache/
+omnistation/.pub/
+omnistation/build/
+omnistation/coverage/
+
+# Flutter Platform Outputs
+omnistation/android/.gradle/
+omnistation/android/local.properties
+omnistation/android/app/debug/
+omnistation/android/app/profile/
+omnistation/android/app/release/
+omnistation/ios/Pods/
+omnistation/ios/.symlinks/
+omnistation/ios/Flutter/Flutter.framework
+omnistation/ios/Flutter/Flutter.podspec
+omnistation/ios/Flutter/Generated.xcconfig
+omnistation/ios/Flutter/app.framework
+omnistation/macos/Pods/
+omnistation/windows/flutter/ephemeral/
+omnistation/linux/flutter/ephemeral/
+
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json
+
+# Disc Images, ROMs & User Protected Assets
+*.iso
+*.cso
+*.zso
+*.chd
+*.bin
+*.cue
+*.pkg
+*.pup
+*.sfc
+*.smc
+*.rap
+*.dkey
+*.ird
+*.mcr
+*.ps2
+*.zst
+dev_hdd0/
+savedata/
