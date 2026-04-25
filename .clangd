@@ -1,0 +1,16 @@
+CompileFlags:
+  CompilationDatabase: "build"
+  Add:
+    - -std=c++23
+    - -fobjc-arc
+    - -Wno-c++17-extensions
+    - -I/Users/edycarreyes99/Projects/Odynnix/OmniStation/cores/common
+    - -I/Users/edycarreyes99/Projects/Odynnix/OmniStation/cores/gpu_backends
+    - -I/Users/edycarreyes99/Projects/Odynnix/OmniStation/cores/snes_core
+    - -I/Users/edycarreyes99/Projects/Odynnix/OmniStation/cores/snes_core/lake_snes
+    - -I/Users/edycarreyes99/Projects/Odynnix/OmniStation/native_gpu_bridge
+    - -I/Users/edycarreyes99/Projects/Odynnix/OmniStation/omnistation/android/app/src/main/cpp
+Diagnostics:
+  UnusedIncludes: None
+  Suppress:
+    - "-Wc++17-extensions"
