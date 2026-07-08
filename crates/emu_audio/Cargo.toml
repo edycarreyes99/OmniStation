@@ -1,0 +1,18 @@
+[package]
+name = "emu_audio"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+rtrb.workspace = true
+rubato.workspace = true
+cpal.workspace = true
+thiserror.workspace = true
+log.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
