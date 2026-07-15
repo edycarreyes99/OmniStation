@@ -1,0 +1,21 @@
+[package]
+name = "emu_host"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+emu_vfs = { path = "../emu_vfs" }
+emu_storage = { path = "../emu_storage" }
+emu_audio = { path = "../emu_audio" }
+emu_input = { path = "../emu_input" }
+spin_sleep.workspace = true
+parking_lot.workspace = true
+thiserror.workspace = true
+log.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
