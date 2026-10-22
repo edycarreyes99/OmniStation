@@ -1,0 +1,183 @@
+{
+  "@@locale": "ja",
+  "appTitle": "OmniStation",
+  "tagline": "超高性能マルチシステムエミュレータ",
+  
+  "navLibrary": "ライブラリ",
+  "navStorage": "ストレージ",
+  "navTrophies": "トロフィー",
+  "navSettings": "設定",
+  
+  "platformSnes": "スーパーファミコン (SNES)",
+  "platformPs1": "PlayStation 1",
+  "platformPs2": "PlayStation 2",
+  "platformPs3": "PlayStation 3",
+  
+  "statusReady": "準備完了",
+  "statusRunning": "実行中",
+  "statusPaused": "一時停止",
+  "statusStopped": "停止",
+  "statusCompilingShaders": "シェーダーをコンパイル中...",
+  "statusBootingKernel": "カーネルを起動中...",
+  "statusLoadingDisc": "ディスクを読み込み中...",
+  
+  "telemetryFps": "FPS",
+  "telemetryFrameTime": "フレーム時間",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "プレイ",
+  "actionPause": "一時停止",
+  "actionResume": "再開",
+  "actionStop": "停止",
+  "actionRestart": "リスタート",
+  "actionLoadState": "ステートロード",
+  "actionSaveState": "ステートセーブ",
+  "actionQuickMenu": "クイックメニュー",
+  "actionInstallPkg": "PKG/PUPをインストール",
+  "actionInsertDisc": "ディスクを挿入",
+  "actionEjectDisc": "ディスクを取り出す",
+  
+  "storageMemoryCard": "メモリーカード",
+  "storageMemoryCardSlot1": "メモリーカード スロット1",
+  "storageMemoryCardSlot2": "メモリーカード スロット2",
+  "storagePs3Hdd": "PS3仮想HDD",
+  "storageBlocksFree": "空き {count} ブロック",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "メモリーカードを初期化",
+  "storageFormatConfirm": "このメモリーカードを初期化しますか？保存されているすべてのセーブデータが完全に消去されます。",
+  "storageFormatSuccess": "メモリーカードの初期化が完了しました。",
+  
+  "trophyUnlocked": "トロフィーを獲得しました！",
+  "trophyBronze": "ブロンズ",
+  "trophySilver": "シルバー",
+  "trophyGold": "ゴールド",
+  "trophyPlatinum": "プラチナ",
+  
+  "settingsGeneral": "全般",
+  "settingsGraphics": "グラフィックス",
+  "settingsAudio": "オーディオ",
+  "settingsInput": "入力とコントローラー",
+  "settingsLanguage": "言語",
+  "settingsTheme": "テーマ",
+  "settingsThemeLight": "ライトモード",
+  "settingsThemeDark": "ダークモード",
+  "settingsThemeSystem": "システム標準",
+  "settingsInternalResolution": "内部解像度スケーリング",
+  "settingsShaderPreset": "ポストプロセスフィルター",
+  "settingsShaderNone": "バイリニア",
+  "settingsShaderCrt": "CRT Royale ブラウン管",
+  "settingsShaderScanlines": "スキャンライン",
+  
+  "errorTitle": "エミュレーションエラー",
+  "errorUnknown": "エミュレーション中に予期しないエラーが発生しました。",
+  "errorDiscRead": "ディスクイメージの読み込みに失敗しました。ファイルが破損している可能性があります。",
+  "errorUdfFs": "Blu-ray UDF 2.50 ファイルシステムの解析に失敗しました。",
+  "errorIsoDecryption": "暗号化されたPS3ディスクを検出しました。復号キー (.ird / .dkey) が見つかりません。",
+  "errorParamSfo": "PARAM.SFO メタデータの解析に失敗しました。",
+  "errorSelfDecryption": "SELF/SPRXバイナリの復号に失敗しました。SCE/NPDRM署名の検証に失敗しました。",
+  "errorPkgRapMissing": "インストールされたPKGパッケージの .rap ライセンスファイルがありません。",
+  "errorFirmwareMissing": "必要なファームウェアまたはBIOSファイルが見つかりません。システムソフトウェアをインストールしてください。",
+  "errorMemoryCardCorrupt": "メモリーカードイメージが破損しているか、チェックサム検証に失敗しました。",
+  "errorPs3SaveDataSignature": "PS3セーブデータの検証に失敗しました（PARAM.PFD署名破損）。",
+  "errorSaveStateVersion": "セーブステートのバージョンがこのコアと互換性がありません。",
+  "errorAudioInit": "低遅延オーディオ出力の初期化に失敗しました。",
+  "errorGpuInit": "GPUレンダラーの初期化に失敗しました。Vulkan/Metalの互換性を確認してください。",
+  "errorJitAllocation": "JIT実行可能コードキャッシュメモリの割り当てに失敗しました。",
+
+  "actionOk": "OK",
+  "actionCancel": "キャンセル",
+  "filterAll": "すべての機種",
+  "actionHideHud": "HUDを非表示",
+  "actionShowHud": "HUDを表示",
+  "actionSimulateTrophy": "トロフィー解除のシミュレーション",
+  "saveStateSuccess": "ステートセーブが正常に完了しました (スロット {slot})。",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "ステートロードが正常に完了しました (スロット {slot})。",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "OmniStation グランドマスター",
+  "unitMilliseconds": "{value} ミリ秒",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL有効",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Vulkan 1.3 / Metal 3 ハードウェアスケーラー",
+  "settingsResNative": "1x ネイティブ",
+  "settingsRes1440p": "2x (1440p Quad HD)",
+  "settingsRes4k": "4x (4K Ultra HD)",
+  "settingsRes8k": "8x (8K エクストリーム)",
+  "settingsShaderDesc": "Impeller リアルタイムシェーダーパイプライン",
+  "storagePs1Capacity": "PlayStation 1 (128 KB)",
+  "storagePs2Capacity": "PlayStation 2 (8 MB)",
+  "storagePfdValid": "PARAM.PFD署名有効",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} GB / {total} GB",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "OmniStation パイオニア",
+  "trophyPioneerDesc": "OmniStation マルチシステムエミュレーターを初めて起動しました。",
+  "trophyVeteranTitle": "ハードウェアベテラン",
+  "trophyVeteranDesc": "Metal 3 および Vulkan 1.3 ゼロコピーテクスチャパイプラインを設定しました。",
+  "trophyCellMasterTitle": "Cell Broadband Engine マスター",
+  "trophyCellMasterDesc": "PowerPC PPE と 6 つの SPU スレッドをジッターなしで並行実行しました。",
+  "trophyArchitectTitle": "プラチナアーキテクト",
+  "trophyArchitectDesc": "C++23、Rust、Flutter 3.x でテストカバレッジ 100% を達成しました。",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "exdata に EP0001-BLES00001_00.rap が見つかりません",
+  "defaultGameTitle": "OmniStation ゲーム",
+  "actionImportGame": "ゲームをインポート",
+  "actionDeleteGame": "ゲームを削除",
+  "dialogDeleteGameConfirm": "このゲームをライブラリから削除してもよろしいですか？",
+  "msgGameImportSuccess": "ゲームが正常にインポートされました: {title}",
+  "msgGameImportFailed": "ゲームのインポートに失敗しました: {error}",
+  "emptyLibraryTitle": "ゲームがインストールされていません",
+  "emptyLibraryDesc": "ROM またはディスクイメージ（.smc、.sfc、.msc、.iso、.zip、.pkg、.bin）をインポートしてプレイを開始してください。",
+  "storageTotalAppSpace": "使用中の総ストレージ容量",
+  "storageGamesSpace": "インストール済みゲーム",
+  "storageSavesSpace": "セーブステート & SRAM",
+  "storageCardsSpace": "仮想メモリーカード",
+  "storageFreeSpace": "端末の空き容量",
+  "storageClearCache": "キャッシュを消去",
+  "storageClearCacheSuccess": "キャッシュが正常に消去されました。",
+  "emptyTrophiesTitle": "獲得したトロフィーはありません",
+  "emptyTrophiesDesc": "ゲームをプレイしてマイルストーンを達成し、トロフィーを獲得しましょう。",
+  "actionScanDirectory": "フォルダをスキャン",
+  "unitGigabytes": "{value} GB",
+  "unitMegabytes": "{value} MB",
+  "unitKilobytes": "{value} KB"
+}
+

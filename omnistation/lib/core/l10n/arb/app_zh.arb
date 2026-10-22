@@ -1,0 +1,183 @@
+{
+  "@@locale": "zh",
+  "appTitle": "OmniStation",
+  "tagline": "高性能多系统模拟器",
+  
+  "navLibrary": "游戏库",
+  "navStorage": "存储管理",
+  "navTrophies": "奖杯",
+  "navSettings": "设置",
+  
+  "platformSnes": "超级任天堂 (SNES)",
+  "platformPs1": "PlayStation 1",
+  "platformPs2": "PlayStation 2",
+  "platformPs3": "PlayStation 3",
+  
+  "statusReady": "就绪",
+  "statusRunning": "运行中",
+  "statusPaused": "已暂停",
+  "statusStopped": "已停止",
+  "statusCompilingShaders": "正在编译着色器...",
+  "statusBootingKernel": "正在启动内核...",
+  "statusLoadingDisc": "正在读取光盘...",
+  
+  "telemetryFps": "帧率 (FPS)",
+  "telemetryFrameTime": "帧生成时间",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "开始游戏",
+  "actionPause": "暂停",
+  "actionResume": "继续",
+  "actionStop": "停止",
+  "actionRestart": "重新开始",
+  "actionLoadState": "读取即时存档",
+  "actionSaveState": "保存即时存档",
+  "actionQuickMenu": "快捷菜单",
+  "actionInstallPkg": "安装 PKG/PUP",
+  "actionInsertDisc": "插入光盘",
+  "actionEjectDisc": "弹出光盘",
+  
+  "storageMemoryCard": "记忆卡",
+  "storageMemoryCardSlot1": "记忆卡插槽 1",
+  "storageMemoryCardSlot2": "记忆卡插槽 2",
+  "storagePs3Hdd": "PS3 虚拟硬盘",
+  "storageBlocksFree": "剩余 {count} 个存储块",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "格式化记忆卡",
+  "storageFormatConfirm": "确定要格式化此记忆卡吗？所有保存的数据将被永久抹除。",
+  "storageFormatSuccess": "记忆卡格式化成功。",
+  
+  "trophyUnlocked": "奖杯已解锁！",
+  "trophyBronze": "铜杯",
+  "trophySilver": "银杯",
+  "trophyGold": "金杯",
+  "trophyPlatinum": "白金杯",
+  
+  "settingsGeneral": "通用",
+  "settingsGraphics": "图形",
+  "settingsAudio": "音频",
+  "settingsInput": "输入与手柄",
+  "settingsLanguage": "语言",
+  "settingsTheme": "主题",
+  "settingsThemeLight": "浅色模式",
+  "settingsThemeDark": "深色模式",
+  "settingsThemeSystem": "跟随系统",
+  "settingsInternalResolution": "内部渲染分辨率缩放",
+  "settingsShaderPreset": "画面后处理滤镜",
+  "settingsShaderNone": "双线性过滤",
+  "settingsShaderCrt": "CRT Royale 复古显像管",
+  "settingsShaderScanlines": "扫描线效果",
+  
+  "errorTitle": "模拟器错误",
+  "errorUnknown": "模拟过程中发生未知错误。",
+  "errorDiscRead": "读取光盘镜像失败。文件可能已损坏或无法访问。",
+  "errorUdfFs": "解析蓝光 UDF 2.50 文件系统失败。",
+  "errorIsoDecryption": "检测到加密的 PS3 光盘。解密密钥 (.ird / .dkey) 缺失或无效。",
+  "errorParamSfo": "读取或解析 PARAM.SFO 元数据失败。",
+  "errorSelfDecryption": "解密 SELF/SPRX 二进制文件失败。SCE/NPDRM 签名验证未通过。",
+  "errorPkgRapMissing": "已安装的 PKG 包缺少对应的 .rap 授权许可证文件。",
+  "errorFirmwareMissing": "未找到所需的系统固件或 BIOS 文件。请先安装系统软件。",
+  "errorMemoryCardCorrupt": "记忆卡镜像已损坏或校验和验证失败。",
+  "errorPs3SaveDataSignature": "PS3 存档数据验证失败（PARAM.PFD 数字签名损坏）。",
+  "errorSaveStateVersion": "即时存档版本与当前模拟核心不兼容。",
+  "errorAudioInit": "低延迟音频输出初始化失败。",
+  "errorGpuInit": "硬件 GPU 渲染器初始化失败。请检查 Vulkan/Metal 驱动支持。",
+  "errorJitAllocation": "分配 JIT 可执行代码内存缓存失败。",
+
+  "actionOk": "确定",
+  "actionCancel": "取消",
+  "filterAll": "全部主机",
+  "actionHideHud": "隐藏 HUD",
+  "actionShowHud": "显示 HUD",
+  "actionSimulateTrophy": "模拟奖杯解锁",
+  "saveStateSuccess": "即时存档保存成功 (槽位 {slot})。",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "即时读档恢复成功 (槽位 {slot})。",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "OmniStation 特级大师",
+  "unitMilliseconds": "{value} 毫秒",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL 镜像已激活",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Vulkan 1.3 / Metal 3 硬件分辨率缩放",
+  "settingsResNative": "1x 原生",
+  "settingsRes1440p": "2x (1440p 2K高清)",
+  "settingsRes4k": "4x (4K 超高清)",
+  "settingsRes8k": "8x (8K 极限)",
+  "settingsShaderDesc": "Impeller 实时后处理着色器管线",
+  "storagePs1Capacity": "PlayStation 1 (128 KB)",
+  "storagePs2Capacity": "PlayStation 2 (8 MB)",
+  "storagePfdValid": "PARAM.PFD 签名有效",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} GB / {total} GB",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "OmniStation 开拓者",
+  "trophyPioneerDesc": "首次启动 OmniStation 多系统模拟器。",
+  "trophyVeteranTitle": "硬件老兵",
+  "trophyVeteranDesc": "成功配置 Metal 3 与 Vulkan 1.3 零拷贝纹理渲染通道。",
+  "trophyCellMasterTitle": "Cell 宽带引擎大师",
+  "trophyCellMasterDesc": "同时无延迟运行 PowerPC PPE 与 6 个 SPU 协同线程。",
+  "trophyArchitectTitle": "白金架构师",
+  "trophyArchitectDesc": "在 C++23、Rust 与 Flutter 3.x 实现 100% 测试覆盖率。",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "在 exdata 中未找到 EP0001-BLES00001_00.rap",
+  "defaultGameTitle": "OmniStation 游戏",
+  "actionImportGame": "导入游戏",
+  "actionDeleteGame": "删除游戏",
+  "dialogDeleteGameConfirm": "您确定要从游戏库中删除此游戏吗？",
+  "msgGameImportSuccess": "游戏导入成功：{title}",
+  "msgGameImportFailed": "导入游戏失败：{error}",
+  "emptyLibraryTitle": "未安装游戏",
+  "emptyLibraryDesc": "导入 ROM 或光盘镜像（.smc、.sfc、.msc、.iso、.zip、.pkg、.bin）开始游玩。",
+  "storageTotalAppSpace": "已用总存储空间",
+  "storageGamesSpace": "已安装游戏",
+  "storageSavesSpace": "存档与 SRAM",
+  "storageCardsSpace": "虚拟记忆卡",
+  "storageFreeSpace": "设备剩余空间",
+  "storageClearCache": "清除缓存",
+  "storageClearCacheSuccess": "缓存已成功清除。",
+  "emptyTrophiesTitle": "尚未获得奖杯",
+  "emptyTrophiesDesc": "游玩游戏并达成游戏内里程碑以赢取奖杯。",
+  "actionScanDirectory": "扫描文件夹",
+  "unitGigabytes": "{value} GB",
+  "unitMegabytes": "{value} MB",
+  "unitKilobytes": "{value} KB"
+}
+

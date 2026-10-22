@@ -1,0 +1,183 @@
+{
+  "@@locale": "ar",
+  "appTitle": "أومني ستيشن",
+  "tagline": "محاكي متعدد الأنظمة فائق الأداء",
+  
+  "navLibrary": "المكتبة",
+  "navStorage": "وحدة التخزين",
+  "navTrophies": "الجوائز",
+  "navSettings": "الإعدادات",
+  
+  "platformSnes": "سوبر نينتندو",
+  "platformPs1": "بلاي ستيشن 1",
+  "platformPs2": "بلاي ستيشن 2",
+  "platformPs3": "بلاي ستيشن 3",
+  
+  "statusReady": "جاهز",
+  "statusRunning": "قيد التشغيل",
+  "statusPaused": "متوقف مؤقتاً",
+  "statusStopped": "متوقف",
+  "statusCompilingShaders": "جاري تجميع التظليل...",
+  "statusBootingKernel": "جاري تشغيل النواة...",
+  "statusLoadingDisc": "جاري تحميل القرص...",
+  
+  "telemetryFps": "إطار/ث",
+  "telemetryFrameTime": "زمن الإطار",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "تشغيل",
+  "actionPause": "إيقاف مؤقت",
+  "actionResume": "استئناف",
+  "actionStop": "إيقاف",
+  "actionRestart": "إعادة التشغيل",
+  "actionLoadState": "تحميل الحالة",
+  "actionSaveState": "حفظ الحالة",
+  "actionQuickMenu": "القائمة السريعة",
+  "actionInstallPkg": "تثبيت PKG/PUP",
+  "actionInsertDisc": "إدخال القرص",
+  "actionEjectDisc": "إخراج القرص",
+  
+  "storageMemoryCard": "بطاقة الذاكرة",
+  "storageMemoryCardSlot1": "بطاقة الذاكرة المنفذ 1",
+  "storageMemoryCardSlot2": "بطاقة الذاكرة المنفذ 2",
+  "storagePs3Hdd": "قرص PS3 الافتراضي",
+  "storageBlocksFree": "{count} كتل فارغة",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "تهيأة البطاقة",
+  "storageFormatConfirm": "هل أنت متأكد من رغبتك في تهيئة بطاقة الذاكرة؟ سيتم مسح جميع بيانات الحفظ نهائياً.",
+  "storageFormatSuccess": "تمت تهيئة بطاقة الذاكرة بنجاح.",
+  
+  "trophyUnlocked": "تم فتح الجائزة!",
+  "trophyBronze": "برونزية",
+  "trophySilver": "فضية",
+  "trophyGold": "ذهبية",
+  "trophyPlatinum": "بلاتينية",
+  
+  "settingsGeneral": "عام",
+  "settingsGraphics": "الرسومات",
+  "settingsAudio": "الصوت",
+  "settingsInput": "الإدخال وأجهزة التحكم",
+  "settingsLanguage": "اللغة",
+  "settingsTheme": "المظهر",
+  "settingsThemeLight": "الوضع الفاتح",
+  "settingsThemeDark": "الوضع الداكن",
+  "settingsThemeSystem": "افتراضي النظام",
+  "settingsInternalResolution": "مقياس الدقة الداخلية",
+  "settingsShaderPreset": "مرشح ما بعد المعالجة",
+  "settingsShaderNone": "خطي ثنائي",
+  "settingsShaderCrt": "أنبوب CRT Royale",
+  "settingsShaderScanlines": "خطوط المسح",
+  
+  "errorTitle": "خطأ في المحاكاة",
+  "errorUnknown": "حدث خطأ غير متوقع أثناء المحاكاة.",
+  "errorDiscRead": "فشل في قراءة صورة القرص. قد يكون الملف تالفاً أو لا يمكن الوصول إليه.",
+  "errorUdfFs": "فشل تحليل نظام ملفات Blu-ray UDF 2.50.",
+  "errorIsoDecryption": "تم اكتشاف قرص PS3 مشفر. مفتاح فك التشفير مفقود أو غير صالح (.ird / .dkey).",
+  "errorParamSfo": "فشل في قراءة أو تحليل بيانات PARAM.SFO.",
+  "errorSelfDecryption": "فشل فك تشفير ملف SELF/SPRX الثنائي. فشل التحقق من توقيع SCE/NPDRM.",
+  "errorPkgRapMissing": "ملف ترخيص .rap مفقود لحزمة PKG المثبتة.",
+  "errorFirmwareMissing": "لم يتم العثور على البرنامج الثابت أو ملف BIOS المطلوب. يرجى تثبيت برامج النظام.",
+  "errorMemoryCardCorrupt": "صورة بطاقة الذاكرة تالفة أو فشل التحقق من المجموع الاختباري.",
+  "errorPs3SaveDataSignature": "فشل التحقق من بيانات حفظ PS3 (توقيع PARAM.PFD تالف).",
+  "errorSaveStateVersion": "إصدار حالة الحفظ غير متوافق مع هذا الإصدار من المحاكي.",
+  "errorAudioInit": "فشل في تهيئة مخرج الصوت منخفض التأخير.",
+  "errorGpuInit": "فشل في تهيئة معالج الرسومات. يرجى التحقق من دعم Vulkan/Metal.",
+  "errorJitAllocation": "فشل تخصيص ذاكرة تخزين مؤقت لرموز JIT القابلة للتنفيذ.",
+
+  "actionOk": "موافق",
+  "actionCancel": "إلغاء",
+  "filterAll": "جميع الأجهزة",
+  "actionHideHud": "إخفاء لوحة المعلومات",
+  "actionShowHud": "إظهار لوحة المعلومات",
+  "actionSimulateTrophy": "محاكاة فتح الإنجاز",
+  "saveStateSuccess": "تم حفظ الحالة بنجاح (الموضع {slot}).",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "تم استرجاع الحالة بنجاح (الموضع {slot}).",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "الأستاذ الأكبر لـ OmniStation",
+  "unitMilliseconds": "{value} مللي ثانية",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}٪",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL مفعّل",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "مُرقّي الدقة الرسومية بالعتاد Vulkan 1.3 / Metal 3",
+  "settingsResNative": "1x الدقة الأصلية",
+  "settingsRes1440p": "2x (1440p دقة عالية)",
+  "settingsRes4k": "4x (4K دقة فائقة)",
+  "settingsRes8k": "8x (8K دقة خارقة)",
+  "settingsShaderDesc": "مسار التظليل بالوقت الفعلي Impeller",
+  "storagePs1Capacity": "PlayStation 1 (128 كيلوبايت)",
+  "storagePs2Capacity": "PlayStation 2 (8 ميجابايت)",
+  "storagePfdValid": "توقيع PARAM.PFD سليم",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} جيجابايت / {total} جيجابايت",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "رائد OmniStation",
+  "trophyPioneerDesc": "تم تشغيل محاكي الأنظمة المتعددة OmniStation لأول مرة.",
+  "trophyVeteranTitle": "خبير العتاد",
+  "trophyVeteranDesc": "تم تكوين مسارات إكساء Metal 3 وVulkan 1.3 بدون نسخ للذاكرة.",
+  "trophyCellMasterTitle": "أستاذ محرك Cell Broadband",
+  "trophyCellMasterDesc": "تم تشغيل PPE PowerPC و6 خيوط SPU بالتوازي وبدون أي تأخير.",
+  "trophyArchitectTitle": "المهندس البلاتيني",
+  "trophyArchitectDesc": "تم تحقيق تغطية اختبار 100% عبر C++23 وRust وFlutter 3.x.",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "ملف EP0001-BLES00001_00.rap غير موجود في exdata",
+  "defaultGameTitle": "لعبة OmniStation",
+  "actionImportGame": "استيراد لعبة",
+  "actionDeleteGame": "حذف اللعبة",
+  "dialogDeleteGameConfirm": "هل أنت متأكد من رغبتك في إزالة هذه اللعبة من مكتبتك؟",
+  "msgGameImportSuccess": "تم استيراد اللعبة بنجاح: {title}",
+  "msgGameImportFailed": "فشل استيراد اللعبة: {error}",
+  "emptyLibraryTitle": "لا توجد ألعاب مثبتة",
+  "emptyLibraryDesc": "استورد ملفات ROM أو صور الأقراص (.smc، .sfc، .msc، .iso، .zip، .pkg، .bin) لبدء اللعب.",
+  "storageTotalAppSpace": "إجمالي المساحة المستخدمة",
+  "storageGamesSpace": "الألعاب المثبتة",
+  "storageSavesSpace": "حالات الحفظ و SRAM",
+  "storageCardsSpace": "بطاقات الذاكرة الافتراضية",
+  "storageFreeSpace": "المساحة الخالية بالجهاز",
+  "storageClearCache": "مسح ذاكرة التخزين المؤقت",
+  "storageClearCacheSuccess": "تم مسح ذاكرة التخزين المؤقت بنجاح.",
+  "emptyTrophiesTitle": "لم يتم الحصول على كؤوس",
+  "emptyTrophiesDesc": "العب الألعاب وحقق الإنجازات لفتح الكؤوس.",
+  "actionScanDirectory": "فحص المجلد",
+  "unitGigabytes": "{value} جيجابايت",
+  "unitMegabytes": "{value} ميجابايت",
+  "unitKilobytes": "{value} كيلوبايت"
+}
+

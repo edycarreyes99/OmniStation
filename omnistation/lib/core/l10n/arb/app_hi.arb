@@ -1,0 +1,183 @@
+{
+  "@@locale": "hi",
+  "appTitle": "ओम्नीस्टेशन",
+  "tagline": "उच्च-प्रदर्शन मल्टी-सिस्टम एमुलेटर",
+  
+  "navLibrary": "लाइब्रेरी",
+  "navStorage": "स्टोरेज",
+  "navTrophies": "ट्रॉफ़ी",
+  "navSettings": "सेटिंग्स",
+  
+  "platformSnes": "सुपर निंटेंडो",
+  "platformPs1": "प्लेस्टेशन 1",
+  "platformPs2": "प्लेस्टेशन 2",
+  "platformPs3": "प्लेस्टेशन 3",
+  
+  "statusReady": "तैयार",
+  "statusRunning": "चालू है",
+  "statusPaused": "रोका गया",
+  "statusStopped": "बंद किया गया",
+  "statusCompilingShaders": "शेडर्स संकलित किए जा रहे हैं...",
+  "statusBootingKernel": "कर्नेल बूट हो रहा है...",
+  "statusLoadingDisc": "डिस्क लोड हो रही है...",
+  
+  "telemetryFps": "FPS",
+  "telemetryFrameTime": "फ़्रेम समय",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "खेलें",
+  "actionPause": "रोकें",
+  "actionResume": "फिर से शुरू करें",
+  "actionStop": "रोकें",
+  "actionRestart": "पुनरारंभ करें",
+  "actionLoadState": "स्टेट लोड करें",
+  "actionSaveState": "स्टेट सहेजें",
+  "actionQuickMenu": "त्वरित मेनू",
+  "actionInstallPkg": "PKG/PUP इंस्टॉल करें",
+  "actionInsertDisc": "डिस्क डालें",
+  "actionEjectDisc": "डिस्क निकालें",
+  
+  "storageMemoryCard": "मेमोरी कार्ड",
+  "storageMemoryCardSlot1": "मेमोरी कार्ड स्लॉट 1",
+  "storageMemoryCardSlot2": "मेमोरी कार्ड स्लॉट 2",
+  "storagePs3Hdd": "PS3 वर्चुअल HDD",
+  "storageBlocksFree": "{count} ब्लॉक खाली हैं",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "कार्ड प्रारूपित करें",
+  "storageFormatConfirm": "क्या आप वाकई इस मेमोरी कार्ड को प्रारूपित करना चाहते हैं? सभी सहेजा गया डेटा स्थायी रूप से हटा दिया जाएगा।",
+  "storageFormatSuccess": "मेमोरी कार्ड सफलतापूर्वक प्रारूपित किया गया।",
+  
+  "trophyUnlocked": "ट्रॉफ़ी अनलॉक हो गई!",
+  "trophyBronze": "कांस्य",
+  "trophySilver": "रजत",
+  "trophyGold": "स्वर्ण",
+  "trophyPlatinum": "प्लैटिनम",
+  
+  "settingsGeneral": "सामान्य",
+  "settingsGraphics": "ग्राफ़िक्स",
+  "settingsAudio": "ऑडियो",
+  "settingsInput": "इनपुट और नियंत्रक",
+  "settingsLanguage": "भाषा",
+  "settingsTheme": "थीम",
+  "settingsThemeLight": "लाइट मोड",
+  "settingsThemeDark": "डार्क मोड",
+  "settingsThemeSystem": "सिस्टम डिफ़ॉल्ट",
+  "settingsInternalResolution": "आंतरिक रिज़ॉल्यूशन स्केलिंग",
+  "settingsShaderPreset": "पोस्ट-प्रोसेसिंग फ़िल्टर",
+  "settingsShaderNone": "बिलिनियर",
+  "settingsShaderCrt": "CRT Royale",
+  "settingsShaderScanlines": "स्कैनलाइन्स",
+  
+  "errorTitle": "एमुलेशन त्रुटि",
+  "errorUnknown": "एमुलेशन के दौरान एक अप्रत्याशित त्रुटि उत्पन्न हुई।",
+  "errorDiscRead": "ऑप्टिकल डिस्क छवि पढ़ने में विफल। फ़ाइल दूषित या पहुंच योग्य नहीं हो सकती है।",
+  "errorUdfFs": "ब्लू-रे UDF 2.50 फ़ाइल सिस्टम को पार्स करने में विफल।",
+  "errorIsoDecryption": "एन्क्रिप्टेड PS3 डिस्क का पता चला। डिक्रिप्शन कुंजी (.ird / .dkey) गायब या अमान्य है।",
+  "errorParamSfo": "PARAM.SFO मेटाडेटा पढ़ने या पार्स करने में विफल।",
+  "errorSelfDecryption": "SELF/SPRX बाइनरी को डिक्रिप्ट करने में विफल। SCE/NPDRM हस्ताक्षर सत्यापन विफल रहा।",
+  "errorPkgRapMissing": "इंस्टॉल किए गए PKG पैकेज के लिए .rap लाइसेंस फ़ाइल गायब है।",
+  "errorFirmwareMissing": "आवश्यक फर्मवेयर या BIOS फ़ाइल नहीं मिली। कृपया सिस्टम सॉफ़्टवेयर इंस्टॉल करें।",
+  "errorMemoryCardCorrupt": "मेमोरी कार्ड छवि दूषित है या चेकसम सत्यापन विफल रहा।",
+  "errorPs3SaveDataSignature": "PS3 सहेजें डेटा सत्यापन विफल रहा (PARAM.PFD हस्ताक्षर दूषित)।",
+  "errorSaveStateVersion": "सहेजें स्थिति संस्करण इस कोर के साथ असंगत है।",
+  "errorAudioInit": "कम विलंबता ऑडियो आउटपुट प्रारंभ करने में विफल।",
+  "errorGpuInit": "हार्डवेयर GPU रेंडरर प्रारंभ करने में विफल रहा। Vulkan/Metal संगतता जांचें।",
+  "errorJitAllocation": "निष्पादन योग्य JIT कोड कैश मेमोरी आवंटित करने में विफल।",
+
+  "actionOk": "ठीक है",
+  "actionCancel": "रद्द करें",
+  "filterAll": "सभी कंसोल",
+  "actionHideHud": "HUD छिपाएं",
+  "actionShowHud": "HUD दिखाएं",
+  "actionSimulateTrophy": "ट्रॉफी अनलॉक का अनुकरण करें",
+  "saveStateSuccess": "सेव स्टेट सफलतापूर्वक पूरा हुआ (स्लॉट {slot})।",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "लोड स्टेट सफलतापूर्वक पुनर्स्थापित हुआ (स्लॉट {slot})।",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "OmniStation ग्रैंड मास्टर",
+  "unitMilliseconds": "{value} मिलीसेकंड",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL सक्रिय",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Vulkan 1.3 / Metal 3 हार्डवेयर स्केलर",
+  "settingsResNative": "1x मूल",
+  "settingsRes1440p": "2x (1440p क्वाड एचडी)",
+  "settingsRes4k": "4x (4K अल्ट्रा एचडी)",
+  "settingsRes8k": "8x (8K एक्सट्रीम)",
+  "settingsShaderDesc": "Impeller रियल-टाइम शेडर पाइपलाइन",
+  "storagePs1Capacity": "PlayStation 1 (128 KB)",
+  "storagePs2Capacity": "PlayStation 2 (8 MB)",
+  "storagePfdValid": "PARAM.PFD वैध है",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} GB / {total} GB",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "OmniStation पायनियर",
+  "trophyPioneerDesc": "OmniStation मल्टी-सिस्टम एमुलेटर पहली बार चालू किया गया।",
+  "trophyVeteranTitle": "हार्डवेयर वयोवृद्ध",
+  "trophyVeteranDesc": "Metal 3 और Vulkan 1.3 ज़ीरो-कॉपी टेक्सचर पाइपलाइन कॉन्फ़िगर की गईं।",
+  "trophyCellMasterTitle": "सेल ब्रॉडबैंड इंजन के उस्ताद",
+  "trophyCellMasterDesc": "PowerPC PPE और 6 SPU थ्रेड्स बिना किसी अंतराल के एक साथ चलाए गए।",
+  "trophyArchitectTitle": "प्लैटिनम वास्तुकार",
+  "trophyArchitectDesc": "C++23, Rust, और Flutter 3.x में 100% परीक्षण कवरेज हासिल किया।",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "exdata में EP0001-BLES00001_00.rap नहीं मिला",
+  "defaultGameTitle": "OmniStation गेम",
+  "actionImportGame": "गेम आयात करें",
+  "actionDeleteGame": "गेम हटाएं",
+  "dialogDeleteGameConfirm": "क्या आप वाकई इस गेम को अपनी लाइब्रेरी से हटाना चाहते हैं?",
+  "msgGameImportSuccess": "गेम सफलतापूर्वक आयात किया गया: {title}",
+  "msgGameImportFailed": "गेम आयात विफल रहा: {error}",
+  "emptyLibraryTitle": "कोई गेम इंस्टॉल नहीं है",
+  "emptyLibraryDesc": "खेलना शुरू करने के लिए ROM या डिस्क इमेज (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) आयात करें।",
+  "storageTotalAppSpace": "कुल उपयोग किया गया संग्रहण",
+  "storageGamesSpace": "इंस्टॉल किए गए गेम",
+  "storageSavesSpace": "सहेजे गए डेटा और SRAM",
+  "storageCardsSpace": "वर्चुअल मेमोरी कार्ड",
+  "storageFreeSpace": "डिवाइस में खाली स्थान",
+  "storageClearCache": "कैश साफ़ करें",
+  "storageClearCacheSuccess": "कैश सफलतापूर्वक साफ़ किया गया।",
+  "emptyTrophiesTitle": "कोई ट्रॉफी अर्जित नहीं की गई",
+  "emptyTrophiesDesc": "ट्रॉफी जीतने के लिए गेम खेलें और मील के पत्थर पूरे करें।",
+  "actionScanDirectory": "फ़ोल्डर स्कैन करें",
+  "unitGigabytes": "{value} GB",
+  "unitMegabytes": "{value} MB",
+  "unitKilobytes": "{value} KB"
+}
+

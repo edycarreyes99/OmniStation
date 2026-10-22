@@ -1,0 +1,183 @@
+{
+  "@@locale": "it",
+  "appTitle": "OmniStation",
+  "tagline": "Emulatore Multi-Sistema ad Alte Prestazioni",
+  
+  "navLibrary": "Libreria",
+  "navStorage": "Archiviazione",
+  "navTrophies": "Trofei",
+  "navSettings": "Impostazioni",
+  
+  "platformSnes": "Super Nintendo",
+  "platformPs1": "PlayStation 1",
+  "platformPs2": "PlayStation 2",
+  "platformPs3": "PlayStation 3",
+  
+  "statusReady": "Pronto",
+  "statusRunning": "In esecuzione",
+  "statusPaused": "In pausa",
+  "statusStopped": "Arrestato",
+  "statusCompilingShaders": "Compilazione shader in corso...",
+  "statusBootingKernel": "Avvio del kernel...",
+  "statusLoadingDisc": "Caricamento disco ottico...",
+  
+  "telemetryFps": "FPS",
+  "telemetryFrameTime": "Tempo di frame",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "Gioca",
+  "actionPause": "Pausa",
+  "actionResume": "Riprendi",
+  "actionStop": "Ferma",
+  "actionRestart": "Riavvia",
+  "actionLoadState": "Carica Stato",
+  "actionSaveState": "Salva Stato",
+  "actionQuickMenu": "Menu rapido",
+  "actionInstallPkg": "Installa PKG/PUP",
+  "actionInsertDisc": "Inserisci Disco",
+  "actionEjectDisc": "Espelli Disco",
+  
+  "storageMemoryCard": "Memory Card",
+  "storageMemoryCardSlot1": "Memory Card Slot 1",
+  "storageMemoryCardSlot2": "Memory Card Slot 2",
+  "storagePs3Hdd": "HDD Virtuale PS3",
+  "storageBlocksFree": "{count} blocchi liberi",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "Formatta scheda",
+  "storageFormatConfirm": "Sei sicuro di voler formattare questa Memory Card? Tutti i dati di salvataggio verranno eliminati definitivamente.",
+  "storageFormatSuccess": "Memory Card formattata con successo.",
+  
+  "trophyUnlocked": "Trofeo Sbloccato!",
+  "trophyBronze": "Bronzo",
+  "trophySilver": "Argento",
+  "trophyGold": "Oro",
+  "trophyPlatinum": "Platino",
+  
+  "settingsGeneral": "Generale",
+  "settingsGraphics": "Grafica",
+  "settingsAudio": "Audio",
+  "settingsInput": "Input & Controller",
+  "settingsLanguage": "Lingua",
+  "settingsTheme": "Tema",
+  "settingsThemeLight": "Tema Chiaro",
+  "settingsThemeDark": "Tema Scuro",
+  "settingsThemeSystem": "Predefinito di Sistema",
+  "settingsInternalResolution": "Scala Risoluzione Interna",
+  "settingsShaderPreset": "Filtro Post-Elaborazione",
+  "settingsShaderNone": "Bilineare",
+  "settingsShaderCrt": "CRT Royale",
+  "settingsShaderScanlines": "Scanlines",
+  
+  "errorTitle": "Errore di Emulazione",
+  "errorUnknown": "Si è verificato un errore imprevisto durante l'emulazione.",
+  "errorDiscRead": "Impossibile leggere l'immagine del disco ottico. Il file potrebbe essere danneggiato.",
+  "errorUdfFs": "Analisi del file system Blu-ray UDF 2.50 non riuscita.",
+  "errorIsoDecryption": "Rilevato disco PS3 crittografato. Chiave di decrittazione mancante o non valida (.ird / .dkey).",
+  "errorParamSfo": "Lettura o analisi dei metadati PARAM.SFO non riuscita.",
+  "errorSelfDecryption": "Decrittazione del binario SELF/SPRX fallita. Verifica firma SCE/NPDRM non riuscita.",
+  "errorPkgRapMissing": "File di licenza .rap mancante per il pacchetto PKG installato.",
+  "errorFirmwareMissing": "File firmware o BIOS richiesto non trovato. Installa il software di sistema.",
+  "errorMemoryCardCorrupt": "Immagine della Memory Card danneggiata o checksum non corrispondente.",
+  "errorPs3SaveDataSignature": "Verifica dei dati di salvataggio PS3 fallita (firma PARAM.PFD danneggiata).",
+  "errorSaveStateVersion": "La versione dello stato di salvataggio è incompatibile con questo core.",
+  "errorAudioInit": "Inizializzazione sink audio a bassa latenza non riuscita.",
+  "errorGpuInit": "Inizializzazione del renderer GPU hardware non riuscita. Verifica il supporto Vulkan/Metal.",
+  "errorJitAllocation": "Allocazione della memoria della cache di codice eseguibile JIT non riuscita.",
+
+  "actionOk": "OK",
+  "actionCancel": "Annulla",
+  "filterAll": "Tutte le Console",
+  "actionHideHud": "Nascondi HUD",
+  "actionShowHud": "Mostra HUD",
+  "actionSimulateTrophy": "Simula Sblocco Trofeo",
+  "saveStateSuccess": "Salvataggio completato con successo (Slot {slot}).",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "Stato caricato con successo (Slot {slot}).",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "Gran Maestro OmniStation",
+  "unitMilliseconds": "{value} ms",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL Attivo",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Ridimensionamento Hardware Vulkan 1.3 / Metal 3",
+  "settingsResNative": "1x Nativo",
+  "settingsRes1440p": "2x (1440p Quad HD)",
+  "settingsRes4k": "4x (4K Ultra HD)",
+  "settingsRes8k": "8x (8K Estremo)",
+  "settingsShaderDesc": "Pipeline Shader in Tempo Reale Impeller",
+  "storagePs1Capacity": "PlayStation 1 (128 KB)",
+  "storagePs2Capacity": "PlayStation 2 (8 MB)",
+  "storagePfdValid": "PARAM.PFD Valido",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} GB / {total} GB",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "Pioniere OmniStation",
+  "trophyPioneerDesc": "Avviato l'emulatore multi-sistema OmniStation per la prima volta.",
+  "trophyVeteranTitle": "Veterano dell'Hardware",
+  "trophyVeteranDesc": "Configurate le pipeline di texture zero-copy Metal 3 e Vulkan 1.3.",
+  "trophyCellMasterTitle": "Maestro del Cell Broadband Engine",
+  "trophyCellMasterDesc": "Esecuzione simultanea di PPE PowerPC e 6 thread SPU senza jitter.",
+  "trophyArchitectTitle": "Architetto Platino",
+  "trophyArchitectDesc": "Raggiunta la copertura di test al 100% su C++23, Rust e Flutter 3.x.",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "EP0001-BLES00001_00.rap non trovato in exdata",
+  "defaultGameTitle": "Gioco OmniStation",
+  "actionImportGame": "Importa gioco",
+  "actionDeleteGame": "Elimina gioco",
+  "dialogDeleteGameConfirm": "Sei sicuro di voler rimuovere questo gioco dalla tua libreria?",
+  "msgGameImportSuccess": "Gioco importato con successo: {title}",
+  "msgGameImportFailed": "Impossibile importare il gioco: {error}",
+  "emptyLibraryTitle": "Nessun gioco installato",
+  "emptyLibraryDesc": "Importa ROM o immagini disco (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) per iniziare a giocare.",
+  "storageTotalAppSpace": "Spazio di archiviazione totale utilizzato",
+  "storageGamesSpace": "Giochi installati",
+  "storageSavesSpace": "Salvataggi e SRAM",
+  "storageCardsSpace": "Schede di memoria virtuali",
+  "storageFreeSpace": "Spazio libero sul dispositivo",
+  "storageClearCache": "Cancella cache",
+  "storageClearCacheSuccess": "Cache cancellata con successo.",
+  "emptyTrophiesTitle": "Nessun trofeo ottenuto",
+  "emptyTrophiesDesc": "Gioca e completa gli obiettivi nei giochi per guadagnare trofei.",
+  "actionScanDirectory": "Scansiona cartella",
+  "unitGigabytes": "{value} GB",
+  "unitMegabytes": "{value} MB",
+  "unitKilobytes": "{value} KB"
+}
+

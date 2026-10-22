@@ -1,0 +1,183 @@
+{
+  "@@locale": "ru",
+  "appTitle": "OmniStation",
+  "tagline": "Высокопроизводительный мультисистемный эмулятор",
+  
+  "navLibrary": "Библиотека",
+  "navStorage": "Память",
+  "navTrophies": "Призы",
+  "navSettings": "Настройки",
+  
+  "platformSnes": "Super Nintendo",
+  "platformPs1": "PlayStation 1",
+  "platformPs2": "PlayStation 2",
+  "platformPs3": "PlayStation 3",
+  
+  "statusReady": "Готов",
+  "statusRunning": "Выполняется",
+  "statusPaused": "Приостановлено",
+  "statusStopped": "Остановлено",
+  "statusCompilingShaders": "Компиляция шейдеров...",
+  "statusBootingKernel": "Загрузка ядра...",
+  "statusLoadingDisc": "Чтение оптического диска...",
+  
+  "telemetryFps": "FPS",
+  "telemetryFrameTime": "Время кадра",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "Играть",
+  "actionPause": "Пауза",
+  "actionResume": "Продолжить",
+  "actionStop": "Стоп",
+  "actionRestart": "Перезапустить",
+  "actionLoadState": "Загрузить состояние",
+  "actionSaveState": "Сохранить состояние",
+  "actionQuickMenu": "Быстрое меню",
+  "actionInstallPkg": "Установить PKG/PUP",
+  "actionInsertDisc": "Вставить диск",
+  "actionEjectDisc": "Извлечь диск",
+  
+  "storageMemoryCard": "Карта памяти",
+  "storageMemoryCardSlot1": "Карта памяти Слот 1",
+  "storageMemoryCardSlot2": "Карта памяти Слот 2",
+  "storagePs3Hdd": "Виртуальный диск PS3",
+  "storageBlocksFree": "Свободно {count} блоков",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "Форматировать карту",
+  "storageFormatConfirm": "Вы уверены, что хотите отформатировать карту памяти? Все сохраненные данные будут безвозвратно удалены.",
+  "storageFormatSuccess": "Карта памяти успешно отформатирована.",
+  
+  "trophyUnlocked": "Приз получен!",
+  "trophyBronze": "Бронза",
+  "trophySilver": "Серебро",
+  "trophyGold": "Золото",
+  "trophyPlatinum": "Платина",
+  
+  "settingsGeneral": "Общие",
+  "settingsGraphics": "Графика",
+  "settingsAudio": "Аудио",
+  "settingsInput": "Ввод и геймпады",
+  "settingsLanguage": "Язык",
+  "settingsTheme": "Тема",
+  "settingsThemeLight": "Светлая тема",
+  "settingsThemeDark": "Темная тема",
+  "settingsThemeSystem": "Системная",
+  "settingsInternalResolution": "Масштабирование разрешения",
+  "settingsShaderPreset": "Фильтр постобработки",
+  "settingsShaderNone": "Билинейный",
+  "settingsShaderCrt": "CRT Royale ЭЛТ",
+  "settingsShaderScanlines": "Сканлайны",
+  
+  "errorTitle": "Ошибка эмуляции",
+  "errorUnknown": "Во время эмуляции произошла непредвиденная ошибка.",
+  "errorDiscRead": "Не удалось прочитать образ оптического диска. Файл поврежден или недоступен.",
+  "errorUdfFs": "Ошибка синтаксического анализа файловой системы Blu-ray UDF 2.50.",
+  "errorIsoDecryption": "Обнаружен зашифрованный диск PS3. Ключ (.ird / .dkey) отсутствует или недействителен.",
+  "errorParamSfo": "Не удалось прочитать или обработать метаданные PARAM.SFO.",
+  "errorSelfDecryption": "Не удалось расшифровать бинарный файл SELF/SPRX. Ошибка проверки подписи SCE/NPDRM.",
+  "errorPkgRapMissing": "Отсутствует файл лицензии .rap для установленного пакета PKG.",
+  "errorFirmwareMissing": "Необходимый файл прошивки или BIOS не найден. Установите системное ПО.",
+  "errorMemoryCardCorrupt": "Образ карты памяти поврежден или не прошел проверку контрольной суммы.",
+  "errorPs3SaveDataSignature": "Ошибка проверки сохранения PS3 (повреждена подпись PARAM.PFD).",
+  "errorSaveStateVersion": "Версия файла сохранения несовместима с текущим ядром эмулятора.",
+  "errorAudioInit": "Не удалось инициализировать аудиоустройство с низкой задержкой.",
+  "errorGpuInit": "Сбой инициализации аппаратного рендерера GPU. Проверьте поддержку Vulkan/Metal.",
+  "errorJitAllocation": "Не удалось выделить память под исполняемый кэш JIT-кода.",
+
+  "actionOk": "ОК",
+  "actionCancel": "Отмена",
+  "filterAll": "Все консоли",
+  "actionHideHud": "Скрыть HUD",
+  "actionShowHud": "Показать HUD",
+  "actionSimulateTrophy": "Симулировать разблокировку трофея",
+  "saveStateSuccess": "Состояние успешно сохранено (Слот {slot}).",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "Состояние успешно загружено (Слот {slot}).",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "Гроссмейстер OmniStation",
+  "unitMilliseconds": "{value} мс",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL Активен",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Аппаратное масштабирование Vulkan 1.3 / Metal 3",
+  "settingsResNative": "1x Исходное",
+  "settingsRes1440p": "2x (1440p Quad HD)",
+  "settingsRes4k": "4x (4K Ultra HD)",
+  "settingsRes8k": "8x (8K Экстрим)",
+  "settingsShaderDesc": "Конвейер шейдеров реального времени Impeller",
+  "storagePs1Capacity": "PlayStation 1 (128 КБ)",
+  "storagePs2Capacity": "PlayStation 2 (8 МБ)",
+  "storagePfdValid": "Подпись PARAM.PFD верна",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} ГБ / {total} ГБ",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "Первопроходец OmniStation",
+  "trophyPioneerDesc": "Мультисистемный эмулятор OmniStation запущен впервые.",
+  "trophyVeteranTitle": "Ветеран аппаратного обеспечения",
+  "trophyVeteranDesc": "Настроены конвейеры текстур Metal 3 и Vulkan 1.3 без копирования в памяти.",
+  "trophyCellMasterTitle": "Мастер Cell Broadband Engine",
+  "trophyCellMasterDesc": "PowerPC PPE и 6 потоков SPU запущены параллельно без задержек.",
+  "trophyArchitectTitle": "Платиновый архитектор",
+  "trophyArchitectDesc": "Достигнуто 100% тестовое покрытие в C++23, Rust и Flutter 3.x.",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "Файл EP0001-BLES00001_00.rap не найден в exdata",
+  "defaultGameTitle": "Игра OmniStation",
+  "actionImportGame": "Импортировать игру",
+  "actionDeleteGame": "Удалить игру",
+  "dialogDeleteGameConfirm": "Вы уверены, что хотите удалить эту игру из библиотеки?",
+  "msgGameImportSuccess": "Игра успешно импортирована: {title}",
+  "msgGameImportFailed": "Не удалось импортировать игру: {error}",
+  "emptyLibraryTitle": "Нет установленных игр",
+  "emptyLibraryDesc": "Импортируйте ROM или образы дисков (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin), чтобы начать игру.",
+  "storageTotalAppSpace": "Всего занято памяти",
+  "storageGamesSpace": "Установленные игры",
+  "storageSavesSpace": "Сохранения и SRAM",
+  "storageCardsSpace": "Виртуальные карты памяти",
+  "storageFreeSpace": "Свободно на устройстве",
+  "storageClearCache": "Очистить кэш",
+  "storageClearCacheSuccess": "Кэш успешно очищен.",
+  "emptyTrophiesTitle": "Нет полученных трофеев",
+  "emptyTrophiesDesc": "Играйте в игры и достигайте целей, чтобы получать трофеи.",
+  "actionScanDirectory": "Сканировать папку",
+  "unitGigabytes": "{value} ГБ",
+  "unitMegabytes": "{value} МБ",
+  "unitKilobytes": "{value} КБ"
+}
+

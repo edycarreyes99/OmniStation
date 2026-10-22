@@ -1,0 +1,183 @@
+{
+  "@@locale": "id",
+  "appTitle": "OmniStation",
+  "tagline": "Emulator Multi-Sistem Performa Tinggi",
+  
+  "navLibrary": "Pustaka",
+  "navStorage": "Penyimpanan",
+  "navTrophies": "Piala",
+  "navSettings": "Pengaturan",
+  
+  "platformSnes": "Super Nintendo",
+  "platformPs1": "PlayStation 1",
+  "platformPs2": "PlayStation 2",
+  "platformPs3": "PlayStation 3",
+  
+  "statusReady": "Siap",
+  "statusRunning": "Berjalan",
+  "statusPaused": "Dijeda",
+  "statusStopped": "Berhenti",
+  "statusCompilingShaders": "Mengompilasi Shader...",
+  "statusBootingKernel": "Mem-boot Kernel...",
+  "statusLoadingDisc": "Memuat Cakram Optik...",
+  
+  "telemetryFps": "FPS",
+  "telemetryFrameTime": "Waktu Bingkai",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "Mainkan",
+  "actionPause": "Jeda",
+  "actionResume": "Lanjutkan",
+  "actionStop": "Berhenti",
+  "actionRestart": "Mulai Ulang",
+  "actionLoadState": "Muat Status",
+  "actionSaveState": "Simpan Status",
+  "actionQuickMenu": "Menu Cepat",
+  "actionInstallPkg": "Pasang PKG/PUP",
+  "actionInsertDisc": "Masukkan Cakram",
+  "actionEjectDisc": "Keluarkan Cakram",
+  
+  "storageMemoryCard": "Kartu Memori",
+  "storageMemoryCardSlot1": "Slot Kartu Memori 1",
+  "storageMemoryCardSlot2": "Slot Kartu Memori 2",
+  "storagePs3Hdd": "HDD Virtual PS3",
+  "storageBlocksFree": "{count} blok kosong",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "Format Kartu",
+  "storageFormatConfirm": "Apakah Anda yakin ingin memformat Kartu Memori ini? Semua data penyimpanan akan dihapus secara permanen.",
+  "storageFormatSuccess": "Kartu Memori berhasil diformat.",
+  
+  "trophyUnlocked": "Piala Terbuka!",
+  "trophyBronze": "Perunggu",
+  "trophySilver": "Perak",
+  "trophyGold": "Emas",
+  "trophyPlatinum": "Platina",
+  
+  "settingsGeneral": "Umum",
+  "settingsGraphics": "Grafis",
+  "settingsAudio": "Audio",
+  "settingsInput": "Input & Pengontrol",
+  "settingsLanguage": "Bahasa",
+  "settingsTheme": "Tema",
+  "settingsThemeLight": "Mode Terang",
+  "settingsThemeDark": "Mode Gelap",
+  "settingsThemeSystem": "Bawaan Sistem",
+  "settingsInternalResolution": "Skala Resolusi Internal",
+  "settingsShaderPreset": "Filter Pasca-Pemrosesan",
+  "settingsShaderNone": "Bilinear",
+  "settingsShaderCrt": "CRT Royale",
+  "settingsShaderScanlines": "Scanlines",
+  
+  "errorTitle": "Kesalahan Emulasi",
+  "errorUnknown": "Terjadi kesalahan tak terduga selama emulasi.",
+  "errorDiscRead": "Gagal membaca citra cakram optik. Berkas mungkin rusak atau tidak dapat diakses.",
+  "errorUdfFs": "Gagal mengurai sistem berkas Blu-ray UDF 2.50.",
+  "errorIsoDecryption": "Cakram PS3 terenkripsi terdeteksi. Kunci dekripsi (.ird / .dkey) hilang atau tidak valid.",
+  "errorParamSfo": "Gagal membaca atau mengurai metadata PARAM.SFO.",
+  "errorSelfDecryption": "Gagal mendekripsi biner SELF/SPRX. Pemeriksaan tanda tangan SCE/NPDRM gagal.",
+  "errorPkgRapMissing": "Berkas lisensi .rap hilang untuk paket PKG yang dipasang.",
+  "errorFirmwareMissing": "Berkas firmware atau BIOS yang diperlukan tidak ditemukan. Harap pasang perangkat lunak sistem.",
+  "errorMemoryCardCorrupt": "Citra kartu memori rusak atau gagal dalam verifikasi checksum.",
+  "errorPs3SaveDataSignature": "Verifikasi data penyimpanan PS3 gagal (tanda tangan kriptografi PARAM.PFD rusak).",
+  "errorSaveStateVersion": "Versi status penyimpanan tidak kompatibel dengan build core ini.",
+  "errorAudioInit": "Gagal menginisialisasi sink audio latensi rendah.",
+  "errorGpuInit": "Perender GPU perangkat keras gagal diinisialisasi. Periksa kompatibilitas Vulkan/Metal.",
+  "errorJitAllocation": "Gagal mengalokasikan memori cache kode JIT yang dapat dieksekusi.",
+
+  "actionOk": "OK",
+  "actionCancel": "Batal",
+  "filterAll": "Semua Konsol",
+  "actionHideHud": "Sembunyikan HUD",
+  "actionShowHud": "Tampilkan HUD",
+  "actionSimulateTrophy": "Simulasi Buka Kunci Trofi",
+  "saveStateSuccess": "Simpan status berhasil diselesaikan (Slot {slot}).",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "Muat status berhasil dipulihkan (Slot {slot}).",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "Master Agung OmniStation",
+  "unitMilliseconds": "{value} md",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL Aktif",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Penskala Perangkat Keras Vulkan 1.3 / Metal 3",
+  "settingsResNative": "1x Asli",
+  "settingsRes1440p": "2x (1440p Quad HD)",
+  "settingsRes4k": "4x (4K Ultra HD)",
+  "settingsRes8k": "8x (8K Ekstrem)",
+  "settingsShaderDesc": "Saluran Shader Real-Time Impeller",
+  "storagePs1Capacity": "PlayStation 1 (128 KB)",
+  "storagePs2Capacity": "PlayStation 2 (8 MB)",
+  "storagePfdValid": "PARAM.PFD Valid",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} GB / {total} GB",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "Pelopor OmniStation",
+  "trophyPioneerDesc": "Menjalankan emulator multi-sistem OmniStation untuk pertama kalinya.",
+  "trophyVeteranTitle": "Veteran Perangkat Keras",
+  "trophyVeteranDesc": "Mengonfigurasi saluran tekstur zero-copy Metal 3 dan Vulkan 1.3.",
+  "trophyCellMasterTitle": "Master Cell Broadband Engine",
+  "trophyCellMasterDesc": "Menjalankan PPE PowerPC dan 6 thread SPU secara bersamaan tanpa jeda.",
+  "trophyArchitectTitle": "Arsitek Platinum",
+  "trophyArchitectDesc": "Mencapai 100% cakupan pengujian di C++23, Rust, dan Flutter 3.x.",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "EP0001-BLES00001_00.rap tidak ditemukan di exdata",
+  "defaultGameTitle": "Game OmniStation",
+  "actionImportGame": "Impor Game",
+  "actionDeleteGame": "Hapus Game",
+  "dialogDeleteGameConfirm": "Apakah Anda yakin ingin menghapus game ini dari perpustakaan Anda?",
+  "msgGameImportSuccess": "Game berhasil diimpor: {title}",
+  "msgGameImportFailed": "Gagal mengimpor game: {error}",
+  "emptyLibraryTitle": "Belum Ada Game Terinstal",
+  "emptyLibraryDesc": "Impor ROM atau image disk (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) untuk mulai bermain.",
+  "storageTotalAppSpace": "Total Penyimpanan Digunakan",
+  "storageGamesSpace": "Game Terinstal",
+  "storageSavesSpace": "State Penyimpanan & SRAM",
+  "storageCardsSpace": "Kartu Memori Virtual",
+  "storageFreeSpace": "Ruang Bebas Perangkat",
+  "storageClearCache": "Hapus Cache",
+  "storageClearCacheSuccess": "Cache berhasil dibersihkan.",
+  "emptyTrophiesTitle": "Belum Ada Trofi Diperoleh",
+  "emptyTrophiesDesc": "Mainkan game dan selesaikan pencapaian untuk membuka trofi.",
+  "actionScanDirectory": "Pindai Folder",
+  "unitGigabytes": "{value} GB",
+  "unitMegabytes": "{value} MB",
+  "unitKilobytes": "{value} KB"
+}
+

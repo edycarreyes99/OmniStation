@@ -1,0 +1,183 @@
+{
+  "@@locale": "ko",
+  "appTitle": "OmniStation",
+  "tagline": "초고성능 멀티 시스템 에뮬레이터",
+  
+  "navLibrary": "라이브러리",
+  "navStorage": "저장소 관리",
+  "navTrophies": "트로피",
+  "navSettings": "설정",
+  
+  "platformSnes": "슈퍼 패미컴 (SNES)",
+  "platformPs1": "PlayStation 1",
+  "platformPs2": "PlayStation 2",
+  "platformPs3": "PlayStation 3",
+  
+  "statusReady": "준비 완료",
+  "statusRunning": "실행 중",
+  "statusPaused": "일시 중지됨",
+  "statusStopped": "중지됨",
+  "statusCompilingShaders": "셰이더 컴파일 중...",
+  "statusBootingKernel": "커널 부팅 중...",
+  "statusLoadingDisc": "디스크 로딩 중...",
+  
+  "telemetryFps": "FPS",
+  "telemetryFrameTime": "프레임 타임",
+  "telemetryPpu": "PPU",
+  "telemetrySpu": "SPU",
+  "telemetryEe": "EE",
+  "telemetryGs": "GS",
+  "telemetryRsx": "RSX",
+  "telemetryAudioDrc": "DRC",
+  
+  "actionPlay": "플레이",
+  "actionPause": "일시 중지",
+  "actionResume": "다시 시작",
+  "actionStop": "정지",
+  "actionRestart": "재부팅",
+  "actionLoadState": "상태 불러오기",
+  "actionSaveState": "상태 저장",
+  "actionQuickMenu": "빠른 메뉴",
+  "actionInstallPkg": "PKG/PUP 설치",
+  "actionInsertDisc": "디스크 삽입",
+  "actionEjectDisc": "디스크 꺼내기",
+  
+  "storageMemoryCard": "메모리 카드",
+  "storageMemoryCardSlot1": "메모리 카드 슬롯 1",
+  "storageMemoryCardSlot2": "메모리 카드 슬롯 2",
+  "storagePs3Hdd": "PS3 가상 하드디스크",
+  "storageBlocksFree": "{count}개 블록 남음",
+  "@storageBlocksFree": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "storageFormat": "메모리 카드 포맷",
+  "storageFormatConfirm": "이 메모리 카드를 포맷하시겠습니까? 저장된 모든 데이터가 영구적으로 삭제됩니다.",
+  "storageFormatSuccess": "메모리 카드가 성공적으로 포맷되었습니다.",
+  
+  "trophyUnlocked": "트로피 획득!",
+  "trophyBronze": "브론즈",
+  "trophySilver": "실버",
+  "trophyGold": "골드",
+  "trophyPlatinum": "플래티넘",
+  
+  "settingsGeneral": "일반",
+  "settingsGraphics": "그래픽",
+  "settingsAudio": "오디오",
+  "settingsInput": "입력 및 컨트롤러",
+  "settingsLanguage": "언어",
+  "settingsTheme": "테마",
+  "settingsThemeLight": "라이트 모드",
+  "settingsThemeDark": "다크 모드",
+  "settingsThemeSystem": "시스템 기본값",
+  "settingsInternalResolution": "내부 렌더링 해상도 스케일링",
+  "settingsShaderPreset": "후처리 필터",
+  "settingsShaderNone": "바이리니어",
+  "settingsShaderCrt": "CRT Royale 브라운관",
+  "settingsShaderScanlines": "스캔라인",
+  
+  "errorTitle": "에뮬레이션 오류",
+  "errorUnknown": "에뮬레이션 중 예기치 않은 오류가 발생했습니다.",
+  "errorDiscRead": "디스크 이미지를 읽지 못했습니다. 파일이 손상되었거나 접근할 수 없습니다.",
+  "errorUdfFs": "Blu-ray UDF 2.50 파일 시스템 분석에 실패했습니다.",
+  "errorIsoDecryption": "암호화된 PS3 디스크가 감지되었습니다. 복호화 키(.ird / .dkey)가 누락되었거나 유효하지 않습니다.",
+  "errorParamSfo": "PARAM.SFO 메타데이터 분석에 실패했습니다.",
+  "errorSelfDecryption": "SELF/SPRX 바이너리 복호화에 실패했습니다. SCE/NPDRM 서명 검증 실패.",
+  "errorPkgRapMissing": "설치된 PKG 패키지의 .rap 라이선스 파일이 누락되었습니다.",
+  "errorFirmwareMissing": "필수 펌웨어 또는 BIOS 파일을 찾을 수 없습니다. 시스템 소프트웨어를 설치하십시오.",
+  "errorMemoryCardCorrupt": "메모리 카드 이미지가 손상되었거나 체크섬 검증에 실패했습니다.",
+  "errorPs3SaveDataSignature": "PS3 저장 데이터 검증 실패 (PARAM.PFD 서명 손상).",
+  "errorSaveStateVersion": "저장 상태 버전이 현재 에뮬레이션 코어와 호환되지 않습니다.",
+  "errorAudioInit": "저지연 오디오 장치 초기화에 실패했습니다.",
+  "errorGpuInit": "하드웨어 GPU 렌더러 초기화 실패. Vulkan/Metal 드라이버를 확인하십시오.",
+  "errorJitAllocation": "실행 가능한 JIT 코드 캐시 메모리 할당에 실패했습니다.",
+
+  "actionOk": "확인",
+  "actionCancel": "취소",
+  "filterAll": "모든 콘솔",
+  "actionHideHud": "HUD 숨기기",
+  "actionShowHud": "HUD 표시",
+  "actionSimulateTrophy": "트로피 잠금 해제 시뮬레이션",
+  "saveStateSuccess": "강제 저장이 성공적으로 완료되었습니다 (슬롯 {slot}).",
+  "@saveStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "loadStateSuccess": "강제 저장이 성공적으로 복원되었습니다 (슬롯 {slot}).",
+  "@loadStateSuccess": {
+    "placeholders": {
+      "slot": { "type": "int" }
+    }
+  },
+  "trophyGrandMaster": "OmniStation 그랜드 마스터",
+  "unitMilliseconds": "{value} ms",
+  "@unitMilliseconds": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "percentFormat": "{value}%",
+  "@percentFormat": {
+    "placeholders": {
+      "value": { "type": "int" }
+    }
+  },
+  "statusRtlActive": "RTL 활성화됨",
+  "tagRtl": "(RTL)",
+  "settingsGraphicsScaleDesc": "Vulkan 1.3 / Metal 3 하드웨어 업스케일러",
+  "settingsResNative": "1x 네이티브",
+  "settingsRes1440p": "2x (1440p Quad HD)",
+  "settingsRes4k": "4x (4K Ultra HD)",
+  "settingsRes8k": "8x (8K 익스트림)",
+  "settingsShaderDesc": "Impeller 실시간 셰이더 파이프라인",
+  "storagePs1Capacity": "PlayStation 1 (128 KB)",
+  "storagePs2Capacity": "PlayStation 2 (8 MB)",
+  "storagePfdValid": "PARAM.PFD 유효함",
+  "storagePs3HddPath": "dev_hdd0/home/00000001/savedata",
+  "storagePs3HddUsage": "{used} GB / {total} GB",
+  "@storagePs3HddUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "trophyPioneerTitle": "OmniStation 개척자",
+  "trophyPioneerDesc": "OmniStation 멀티 시스템 에뮬레이터를 처음으로 실행했습니다.",
+  "trophyVeteranTitle": "하드웨어 베테랑",
+  "trophyVeteranDesc": "Metal 3 및 Vulkan 1.3 제로 카피 텍스처 파이프라인을 구성했습니다.",
+  "trophyCellMasterTitle": "Cell Broadband Engine 마스터",
+  "trophyCellMasterDesc": "PowerPC PPE와 6개 SPU 스레드를 지터 없이 동시에 실행했습니다.",
+  "trophyArchitectTitle": "플래티넘 아키텍트",
+  "trophyArchitectDesc": "C++23, Rust 및 Flutter 3.x에서 100% 테스트 커버리지를 달성했습니다.",
+  "btnSelect": "SELECT",
+  "btnStart": "START",
+  "btnL1": "L1",
+  "btnL2": "L2",
+  "btnR1": "R1",
+  "btnR2": "R2",
+  "errorPkgMissingRapSim": "exdata에서 EP0001-BLES00001_00.rap을 찾을 수 없습니다",
+  "defaultGameTitle": "OmniStation 게임",
+  "actionImportGame": "게임 가져오기",
+  "actionDeleteGame": "게임 삭제",
+  "dialogDeleteGameConfirm": "라이브러리에서 이 게임을 삭제하시겠습니까?",
+  "msgGameImportSuccess": "게임을 성공적으로 가져왔습니다: {title}",
+  "msgGameImportFailed": "게임 가져오기 실패: {error}",
+  "emptyLibraryTitle": "설치된 게임 없음",
+  "emptyLibraryDesc": "ROM 또는 디스크 이미지(.smc, .sfc, .msc, .iso, .zip, .pkg, .bin)를 가져와 플레이를 시작하세요.",
+  "storageTotalAppSpace": "총 사용 저장 공간",
+  "storageGamesSpace": "설치된 게임",
+  "storageSavesSpace": "저장 상태 및 SRAM",
+  "storageCardsSpace": "가상 메모리 카드",
+  "storageFreeSpace": "기기 여유 공간",
+  "storageClearCache": "캐시 지우기",
+  "storageClearCacheSuccess": "캐시를 성공적으로 지웠습니다.",
+  "emptyTrophiesTitle": "획득한 트로피 없음",
+  "emptyTrophiesDesc": "게임을 플레이하고 목표를 달성하여 트로피를 획득하세요.",
+  "actionScanDirectory": "폴더 검색",
+  "unitGigabytes": "{value} GB",
+  "unitMegabytes": "{value} MB",
+  "unitKilobytes": "{value} KB"
+}
+
