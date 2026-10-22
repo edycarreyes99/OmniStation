@@ -1,4 +1,4 @@
-# OmniStation 🎮
+# OmniStation
 
 [![C++23 Standard](https://img.shields.io/badge/C%2B%2B-23%20Standard-blue.svg?logo=c%2B%2B)](https://en.cppreference.com/w/cpp/23)
 [![Rust Edition 2024](https://img.shields.io/badge/Rust-Edition%202024-orange.svg?logo=rust)](https://www.rust-lang.org/)
@@ -24,36 +24,37 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
-- [✨ Core Capabilities & Architecture Highlights](#-core-capabilities--architecture-highlights)
-- [🕹️ Target Console Generation Specifications](#️-target-console-generation-specifications)
-- [🏛️ Tri-Tier System Architecture](#️-tri-tier-system-architecture)
-- [📦 Module & Technology Breakdown](#-module--technology-breakdown)
+- [Core Capabilities & Architecture Highlights](#core-capabilities--architecture-highlights)
+- [Target Console Generation Specifications](#target-console-generation-specifications)
+- [Tri-Tier System Architecture](#tri-tier-system-architecture)
+- [Module & Technology Breakdown](#module--technology-breakdown)
   - [1. C++23 Emulation Cores (`cores/`)](#1-c23-emulation-cores-cores)
   - [2. Rust Host Engine & VFS (`crates/`)](#2-rust-host-engine--vfs-crates)
   - [3. Flutter 3.x Presentation Tier (`omnistation/`)](#3-flutter-3x-presentation-tier-omnistation)
-- [📂 Project Directory Structure](#-project-directory-structure)
-- [📋 System Requirements & Prerequisites](#-system-requirements--prerequisites)
-- [⚡ Step-by-Step Compilation Guide](#-step-by-step-compilation-guide)
+- [Project Directory Structure](#project-directory-structure)
+- [System Requirements & Prerequisites](#system-requirements--prerequisites)
+- [Quick One-Command Setup & Compilation (`tool/dev_setup.dart`)](#quick-one-command-setup--compilation-tooldev_setupdart)
+- [Manual Step-by-Step Compilation Guide](#manual-step-by-step-compilation-guide)
   - [Building C++23 Cores](#building-c23-cores)
   - [Building Rust Workspace](#building-rust-workspace)
   - [Configuring & Building Flutter](#configuring--building-flutter)
-- [🚀 Execution Guide & Runtime Flavors](#-execution-guide--runtime-flavors)
-- [🚢 Production Packaging & Deployment](#-production-packaging--deployment)
+- [Execution Guide & Runtime Flavors](#execution-guide--runtime-flavors)
+- [Production Packaging & Deployment](#production-packaging--deployment)
   - [macOS (.app / DMG)](#macos-app--dmg)
   - [Linux (Flatpak / AppImage)](#linux-flatpak--appimage)
   - [Windows (MSIX / Standalone)](#windows-msix--standalone)
   - [Android (APK / AAB)](#android-apk--aab)
   - [iOS (IPA)](#ios-ipa)
-- [🧪 Quality Assurance & Test Verification](#-quality-assurance--test-verification)
-- [⚙️ Configuration & Performance Tuning](#️-configuration--performance-tuning)
-- [🛠️ Troubleshooting & FAQs](#️-troubleshooting--faqs)
-- [⚠️ Legal & Security Disclaimer](#️-legal--security-disclaimer)
+- [Quality Assurance & Test Verification](#quality-assurance--test-verification)
+- [Configuration & Performance Tuning](#configuration--performance-tuning)
+- [Troubleshooting & FAQs](#troubleshooting--faqs)
+- [Legal & Security Disclaimer](#legal--security-disclaimer)
 
 ---
 
-## ✨ Core Capabilities & Architecture Highlights
+## Core Capabilities & Architecture Highlights
 
 - **Dual-Mapping JIT/Dynarec Execution**:
   - Eliminates costly memory re-protection syscalls (`mprotect`) via dual-mapped physical pages (one read-write alias for codegen, one read-execute alias for CPU execution).
@@ -94,7 +95,7 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
 
 ---
 
-## 🕹️ Target Console Generation Specifications
+## Target Console Generation Specifications
 
 | Console | Emulated Hardware Components | Core Technology & Techniques | Target Precision |
 | :--- | :--- | :--- | :--- |
@@ -105,7 +106,7 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
 
 ---
 
-## 🏛️ Tri-Tier System Architecture
+## Tri-Tier System Architecture
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -156,7 +157,7 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
 
 ---
 
-## 📦 Module & Technology Breakdown
+## Module & Technology Breakdown
 
 ### 1. C++23 Emulation Cores (`cores/`)
 
@@ -209,7 +210,7 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
 
 ---
 
-## 📂 Project Directory Structure
+## Project Directory Structure
 
 ```text
 OmniStation/
@@ -267,7 +268,7 @@ OmniStation/
 
 ---
 
-## 📋 System Requirements & Prerequisites
+## System Requirements & Prerequisites
 
 ### Minimum Hardware Specifications
 - **CPU**: x86_64 (AVX2 supported, 4 cores / 8 threads) or ARM64 (Apple Silicon M1+ or ARMv8.2-A+).
@@ -286,7 +287,7 @@ OmniStation/
   - Windows: Visual Studio 2022 with C++ Desktop Development and Clang-CL.
   - Android: Android SDK 34+, Android NDK r27b+.
 
-## ⚡ Quick One-Command Setup & Compilation (`tool/dev_setup.dart`)
+## Quick One-Command Setup & Compilation (`tool/dev_setup.dart`)
 
 OmniStation includes an automated, cross-platform master setup tool that builds all C++23 cores, compiles all Rust crates, synchronizes dynamic libraries, and prepares Flutter in a single command:
 
@@ -314,7 +315,7 @@ For building native C++ and Rust engines independently:
 
 ---
 
-## 🛠 Manual Step-by-Step Compilation Guide
+## Manual Step-by-Step Compilation Guide
 
 ### Building C++23 Cores
 
@@ -373,7 +374,7 @@ For building native C++ and Rust engines independently:
 
 ---
 
-## 🚀 Execution Guide & Runtime Flavors
+## Execution Guide & Runtime Flavors
 
 OmniStation features three dedicated runtime flavors configured via `AppConfig`:
 
@@ -409,7 +410,7 @@ OmniStation features three dedicated runtime flavors configured via `AppConfig`:
 
 ---
 
-## 🚢 Production Packaging & Deployment
+## Production Packaging & Deployment
 
 ### macOS (.app / DMG)
 1. Build the release macOS bundle:
@@ -471,7 +472,7 @@ OmniStation features three dedicated runtime flavors configured via `AppConfig`:
 
 ---
 
-## 🧪 Quality Assurance & Test Verification
+## Quality Assurance & Test Verification
 
 OmniStation strictly maintains **100% test coverage** and **0 compiler or linter warnings** across all three tiers:
 
@@ -531,7 +532,7 @@ $ flutter test --coverage
 
 ---
 
-## ⚙️ Configuration & Performance Tuning
+## Configuration & Performance Tuning
 
 ### Video Settings
 - **Internal Resolution Scaling**:
@@ -551,7 +552,7 @@ $ flutter test --coverage
 
 ---
 
-## 🛠️ Troubleshooting & FAQs
+## Troubleshooting & FAQs
 
 ### macOS: "Dual-Mapping JIT Allocation Failed"
 - **Cause**: Apple Silicon requires executable memory to be managed via `pthread_jit_write_protect_np` or entitlement `com.apple.security.cs.allow-jit`.
@@ -567,7 +568,7 @@ $ flutter test --coverage
 
 ---
 
-## ⚠️ Legal & Security Disclaimer
+## Legal & Security Disclaimer
 
 - **OmniStation** is an independent, clean-room reverse-engineering project developed strictly for personal preservation, educational research, and software compatibility purposes.
 - OmniStation does **NOT** contain, distribute, or bundle proprietary console BIOS files, decrypted firmware files, official encryption keys, or copyrighted game software.
