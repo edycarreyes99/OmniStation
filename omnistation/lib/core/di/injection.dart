@@ -223,23 +223,21 @@ class EmulationSessionController extends StateNotifier<EmulationSessionState> {
           activeGame = game;
           AppLogger.info('EmuSession', 'Media detected: "${game.title}" (Platform: ${game.platform.name})');
 
-          if (game.platform == ConsolePlatform.snes) {
-            AppLogger.info('EmuSession', 'Executing SNES core boot for: ${game.path}');
-            final bootSuccess = _repo.bootSnes(game.path);
-            if (!bootSuccess) {
-              final errDesc = _repo.getLastErrorDescription();
-              AppLogger.error('EmuSession', 'CRITICAL: Failed to boot SNES core! Native error: $errDesc');
-              final failure = UnknownFailure(
-                errDesc.isNotEmpty
-                    ? 'SNES Core Error: $errDesc'
-                    : 'No se pudo iniciar el núcleo SNES para ${game.title}',
-              );
-              _ref.read(lastFailureProvider.notifier).state = failure;
-              state = state.copyWith(status: CoreExecutionState.error);
-              return false;
-            }
-            AppLogger.info('EmuSession', 'SNES core boot confirmed successful!');
+          AppLogger.info('EmuSession', 'Executing core boot for: ${game.path} (${game.platform.name})');
+          final bootSuccess = _repo.bootCore(game.platform, game.path);
+          if (!bootSuccess) {
+            final errDesc = _repo.getLastErrorDescription();
+            AppLogger.error('EmuSession', 'CRITICAL: Failed to boot core! Native error: $errDesc');
+            final failure = UnknownFailure(
+              errDesc.isNotEmpty
+                  ? '${game.platform.name.toUpperCase()} Core Error: $errDesc'
+                  : 'Failed to boot core for ${game.title}',
+            );
+            _ref.read(lastFailureProvider.notifier).state = failure;
+            state = state.copyWith(status: CoreExecutionState.error);
+            return false;
           }
+          AppLogger.info('EmuSession', 'Core boot confirmed successful!');
 
           state = state.copyWith(
             status: CoreExecutionState.running,
@@ -268,27 +266,25 @@ class EmulationSessionController extends StateNotifier<EmulationSessionState> {
 
   void _startEmulationTimer(GameTitle game) {
     _stopEmulationTimer();
-    if (game.platform == ConsolePlatform.snes) {
-      AppLogger.info('EmuSession', 'Starting 60 Hz frame synchronization timer (16.67 ms/frame)');
-      _emulationTimer = Timer.periodic(const Duration(milliseconds: 16), (_) {
-        _tickFrame();
-      });
-    }
+    AppLogger.info('EmuSession', 'Starting 60 Hz frame synchronization timer (16.67 ms/frame) for ${game.platform.name}');
+    _emulationTimer = Timer.periodic(const Duration(milliseconds: 16), (_) {
+      _tickFrame();
+    });
   }
 
   void _tickFrame() {
-    if (state.status != CoreExecutionState.running) return;
+    if (state.status != CoreExecutionState.running || activeGame == null) return;
     try {
-      final stepped = _repo.stepSnesFrame();
+      final stepped = _repo.stepCoreFrame(activeGame!.platform);
       if (!stepped) {
         if (_renderedFrameCount == 0) {
-          AppLogger.warn('EmuSession', 'stepSnesFrame returned false on initial tick');
+          AppLogger.warn('EmuSession', 'stepCoreFrame returned false on initial tick');
         }
         return;
       }
 
       if (_isDecodingFrame) return;
-      final pixels = _repo.getSnesPixels();
+      final pixels = _repo.getCorePixels(activeGame!.platform);
       if (pixels != null) {
         _isDecodingFrame = true;
         final copy = Uint8List.fromList(pixels);
@@ -329,8 +325,8 @@ class EmulationSessionController extends StateNotifier<EmulationSessionState> {
   }
 
   void sendInput(int button, bool pressed) {
-    if (activeGame?.platform == ConsolePlatform.snes) {
-      _repo.setSnesButton(button, pressed);
+    if (activeGame != null) {
+      _repo.setCoreButton(activeGame!.platform, button, pressed);
     }
   }
 
@@ -353,8 +349,8 @@ class EmulationSessionController extends StateNotifier<EmulationSessionState> {
   void stop() {
     AppLogger.info('EmuSession', 'Stopping emulation session and clearing frame');
     _stopEmulationTimer();
-    if (activeGame?.platform == ConsolePlatform.snes) {
-      _repo.stopSnes();
+    if (activeGame != null) {
+      _repo.stopCore(activeGame!.platform);
     }
     _repo.stopEmulation();
     state = state.copyWith(
@@ -368,8 +364,8 @@ class EmulationSessionController extends StateNotifier<EmulationSessionState> {
   void dispose() {
     AppLogger.info('EmuSession', 'Disposing EmulationSessionController');
     _stopEmulationTimer();
-    if (activeGame?.platform == ConsolePlatform.snes) {
-      _repo.stopSnes();
+    if (activeGame != null) {
+      _repo.stopCore(activeGame!.platform);
     }
     super.dispose();
   }

@@ -12,6 +12,11 @@
   "platformPs1": "بلاي ستيشن 1",
   "platformPs2": "بلاي ستيشن 2",
   "platformPs3": "بلاي ستيشن 3",
+  "platformPsp": "بلاي ستيشن بورتابل",
+  "platformPsVita": "بلاي ستيشن فيتا",
+  "platformWii": "نينتندو وي",
+  "platformWiiU": "نينتندو وي يو",
+
   
   "statusReady": "جاهز",
   "statusRunning": "قيد التشغيل",

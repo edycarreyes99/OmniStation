@@ -19,6 +19,10 @@ target_link_libraries(omnistation_tests PRIVATE
     omnistation_ps1
     omnistation_ps2
     omnistation_ps3
+    omnistation_psp
+    omnistation_psvita
+    omnistation_wii
+    omnistation_wiiu
     native_gpu_bridge
 )
 

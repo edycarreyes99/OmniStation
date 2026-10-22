@@ -39,6 +39,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get platformPs3 => 'PlayStation 3';
 
   @override
+  String get platformPsp => 'PlayStation Portable';
+
+  @override
+  String get platformPsVita => 'PlayStation Vita';
+
+  @override
+  String get platformWii => 'Nintendo Wii';
+
+  @override
+  String get platformWiiU => 'Nintendo Wii U';
+
+  @override
   String get statusReady => 'Listo';
 
   @override
@@ -420,7 +432,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get emptyLibraryDesc =>
-      'Importa ROMs o imágenes de disco (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) para comenzar a jugar.';
+      'Importa ROMs o imágenes de disco (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin, .pbp, .cso, .vpk, .wbfs, .rvz, .wud, .rpx) para comenzar a jugar.';
 
   @override
   String get storageTotalAppSpace => 'Almacenamiento Total Usado';

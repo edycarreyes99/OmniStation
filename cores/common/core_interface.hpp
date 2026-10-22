@@ -29,6 +29,10 @@ enum class PlatformType : uint32_t {
     Ps1 = 2,
     Ps2 = 3,
     Ps3 = 4,
+    Psp = 5,
+    PsVita = 6,
+    Wii = 7,
+    WiiU = 8,
 };
 
 struct ExecutionStats {

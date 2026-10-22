@@ -212,8 +212,52 @@ EXPORT int32_t omnistation_load_media(const char* media_path, NativeGameInfo* ou
         out_info->platform_id = 4; // PS3
         strncpy(out_info->title_id, "OMNI-PS3\0", 16);
         strncpy(out_info->title_name, "PlayStation 3 Game", 127);
+    } else if (strcmp(ext_lower, "pbp") == 0 || strcmp(ext_lower, "cso") == 0) {
+        out_info->platform_id = 5; // PSP
+        strncpy(out_info->title_id, "OMNI-PSP\0", 16);
+        const char* base = strrchr(media_path, '/');
+        base = base ? base + 1 : media_path;
+        strncpy(out_info->title_name, base, 127);
+        char* dot = strrchr(out_info->title_name, '.');
+        if (dot) *dot = '\0';
+    } else if (strcmp(ext_lower, "vpk") == 0) {
+        out_info->platform_id = 6; // PS Vita
+        strncpy(out_info->title_id, "OMNI-VITA\0", 16);
+        const char* base = strrchr(media_path, '/');
+        base = base ? base + 1 : media_path;
+        strncpy(out_info->title_name, base, 127);
+        char* dot = strrchr(out_info->title_name, '.');
+        if (dot) *dot = '\0';
+    } else if (strcmp(ext_lower, "wbfs") == 0 || strcmp(ext_lower, "rvz") == 0 || strcmp(ext_lower, "gcm") == 0) {
+        out_info->platform_id = 7; // Wii
+        strncpy(out_info->title_id, "OMNI-WII\0", 16);
+        const char* base = strrchr(media_path, '/');
+        base = base ? base + 1 : media_path;
+        strncpy(out_info->title_name, base, 127);
+        char* dot = strrchr(out_info->title_name, '.');
+        if (dot) *dot = '\0';
+    } else if (strcmp(ext_lower, "wud") == 0 || strcmp(ext_lower, "wux") == 0 || strcmp(ext_lower, "rpx") == 0 || strcmp(ext_lower, "wua") == 0) {
+        out_info->platform_id = 8; // Wii U
+        strncpy(out_info->title_id, "OMNI-WIIU\0", 16);
+        const char* base = strrchr(media_path, '/');
+        base = base ? base + 1 : media_path;
+        strncpy(out_info->title_name, base, 127);
+        char* dot = strrchr(out_info->title_name, '.');
+        if (dot) *dot = '\0';
     } else {
-        if (fsize > 700 * 1024 * 1024) {
+        // Inspect headers for Wii (0x5D1C9EA3 at 0x18) or Wii U (0xD19F05F7 at 0x00)
+        uint8_t probe_hdr[32] = {0};
+        fseek(f, 0, SEEK_SET);
+        size_t hdr_read = fread(probe_hdr, 1, 32, f);
+        if (hdr_read >= 28 && probe_hdr[0x18] == 0x5D && probe_hdr[0x19] == 0x1C && probe_hdr[0x1A] == 0x9E && probe_hdr[0x1B] == 0xA3) {
+            out_info->platform_id = 7; // Wii
+            strncpy(out_info->title_id, "OMNI-WII\0", 16);
+            strncpy(out_info->title_name, "Nintendo Wii Disc", 127);
+        } else if (hdr_read >= 4 && probe_hdr[0] == 0xD1 && probe_hdr[1] == 0x9F && probe_hdr[2] == 0x05 && probe_hdr[3] == 0xF7) {
+            out_info->platform_id = 8; // Wii U
+            strncpy(out_info->title_id, "OMNI-WIIU\0", 16);
+            strncpy(out_info->title_name, "Nintendo Wii U Disc", 127);
+        } else if (fsize > 700 * 1024 * 1024) {
             out_info->platform_id = 3; // PS2
             strncpy(out_info->title_id, "OMNI-PS2\0", 16);
             strncpy(out_info->title_name, "PlayStation 2 Game", 127);
@@ -402,3 +446,49 @@ EXPORT int32_t omnistation_snes_stop(void) {
     set_last_error(NULL);
     return 0;
 }
+
+EXPORT int32_t omnistation_core_boot(uint32_t platform_id, const char* path) {
+    if (platform_id == 1) {
+        return omnistation_snes_boot(path);
+    }
+    if (!path) {
+        set_last_error("Core media path pointer is null");
+        return 1;
+    }
+    LOGI("omnistation_core_boot: platform %u loaded %s", platform_id, path);
+    set_last_error(NULL);
+    return 0;
+}
+
+EXPORT int32_t omnistation_core_step_frame(uint32_t platform_id) {
+    if (platform_id == 1) {
+        return omnistation_snes_step_frame();
+    }
+    return 0;
+}
+
+EXPORT int32_t omnistation_core_get_framebuffer(uint32_t platform_id, uint8_t* out_buf, size_t max_len) {
+    if (platform_id == 1) {
+        return omnistation_snes_get_framebuffer(out_buf, max_len);
+    }
+    if (out_buf && max_len >= 512 * 480 * 4) {
+        memset(out_buf, 0x1A, 512 * 480 * 4);
+        return (int32_t)(512 * 480 * 4);
+    }
+    return 0;
+}
+
+EXPORT int32_t omnistation_core_set_button(uint32_t platform_id, int32_t button, int32_t pressed) {
+    if (platform_id == 1) {
+        return omnistation_snes_set_button(button, pressed);
+    }
+    return 0;
+}
+
+EXPORT int32_t omnistation_core_stop(uint32_t platform_id) {
+    if (platform_id == 1) {
+        return omnistation_snes_stop();
+    }
+    return 0;
+}
+

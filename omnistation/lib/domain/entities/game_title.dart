@@ -3,6 +3,10 @@ enum ConsolePlatform {
   ps1,
   ps2,
   ps3,
+  psp,
+  psvita,
+  wii,
+  wiiu,
 }
 
 class GameTitle {

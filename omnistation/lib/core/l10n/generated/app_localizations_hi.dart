@@ -39,6 +39,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get platformPs3 => 'प्लेस्टेशन 3';
 
   @override
+  String get platformPsp => 'प्लेस्टेशन पोर्टेबल';
+
+  @override
+  String get platformPsVita => 'प्लेस्टेशन वीटा';
+
+  @override
+  String get platformWii => 'निंटेंडो वी';
+
+  @override
+  String get platformWiiU => 'निंटेंडो वी यू';
+
+  @override
   String get statusReady => 'तैयार';
 
   @override

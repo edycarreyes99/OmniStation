@@ -12,6 +12,11 @@
   "platformPs1": "PlayStation 1",
   "platformPs2": "PlayStation 2",
   "platformPs3": "PlayStation 3",
+  "platformPsp": "PlayStation Portable",
+  "platformPsVita": "PlayStation Vita",
+  "platformWii": "Nintendo Wii",
+  "platformWiiU": "Nintendo Wii U",
+
   
   "statusReady": "Готов",
   "statusRunning": "Выполняется",

@@ -23,7 +23,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
   Future<void> _pickAndImportGame({List<String>? customExtensions}) async {
     final l10n = AppLocalizations.of(context);
     final extensions = customExtensions ??
-        ['smc', 'sfc', 'msc', 'iso', 'bin', 'cue', 'pkg', 'pup', 'chd', 'cso', 'zso', 'zip'];
+        ['smc', 'sfc', 'msc', 'iso', 'bin', 'cue', 'pkg', 'pup', 'chd', 'cso', 'zso', 'zip', 'pbp', 'vpk', 'wbfs', 'rvz', 'gcm', 'wud', 'wux', 'rpx', 'wua'];
 
     try {
       AppLogger.info('LibraryUI', 'Opening file picker for extensions: $extensions');
@@ -168,6 +168,30 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                   label: Text(l10n.platformPs3),
                   selected: _selectedPlatform == ConsolePlatform.ps3,
                   onSelected: (_) => setState(() => _selectedPlatform = ConsolePlatform.ps3),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: Text(l10n.platformPsp),
+                  selected: _selectedPlatform == ConsolePlatform.psp,
+                  onSelected: (_) => setState(() => _selectedPlatform = ConsolePlatform.psp),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: Text(l10n.platformPsVita),
+                  selected: _selectedPlatform == ConsolePlatform.psvita,
+                  onSelected: (_) => setState(() => _selectedPlatform = ConsolePlatform.psvita),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: Text(l10n.platformWii),
+                  selected: _selectedPlatform == ConsolePlatform.wii,
+                  onSelected: (_) => setState(() => _selectedPlatform = ConsolePlatform.wii),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: Text(l10n.platformWiiU),
+                  selected: _selectedPlatform == ConsolePlatform.wiiu,
+                  onSelected: (_) => setState(() => _selectedPlatform = ConsolePlatform.wiiu),
                 ),
               ],
             ),
@@ -349,6 +373,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
         return Icons.disc_full_rounded;
       case ConsolePlatform.ps3:
         return Icons.blur_circular_rounded;
+      case ConsolePlatform.psp:
+        return Icons.stay_current_landscape_rounded;
+      case ConsolePlatform.psvita:
+        return Icons.devices_other_rounded;
+      case ConsolePlatform.wii:
+        return Icons.sports_baseball_rounded;
+      case ConsolePlatform.wiiu:
+        return Icons.tablet_android_rounded;
     }
   }
 
@@ -362,6 +394,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
         return l10n.platformPs2;
       case ConsolePlatform.ps3:
         return l10n.platformPs3;
+      case ConsolePlatform.psp:
+        return l10n.platformPsp;
+      case ConsolePlatform.psvita:
+        return l10n.platformPsVita;
+      case ConsolePlatform.wii:
+        return l10n.platformWii;
+      case ConsolePlatform.wiiu:
+        return l10n.platformWiiU;
     }
   }
 }

@@ -12,6 +12,11 @@
   "platformPs1": "PlayStation 1",
   "platformPs2": "PlayStation 2",
   "platformPs3": "PlayStation 3",
+  "platformPsp": "PlayStation Portable",
+  "platformPsVita": "PlayStation Vita",
+  "platformWii": "Nintendo Wii",
+  "platformWiiU": "Nintendo Wii U",
+
   
   "statusReady": "Ready",
   "statusRunning": "Running",
@@ -175,7 +180,7 @@
     }
   },
   "emptyLibraryTitle": "No Games Installed",
-  "emptyLibraryDesc": "Import ROMs or disc images (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) to begin playing.",
+  "emptyLibraryDesc": "Import ROMs or disc images (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin, .pbp, .cso, .vpk, .wbfs, .rvz, .wud, .rpx) to begin playing.",
   "storageTotalAppSpace": "Total Storage Used",
   "storageGamesSpace": "Installed Games",
   "storageSavesSpace": "Save States & SRAM",

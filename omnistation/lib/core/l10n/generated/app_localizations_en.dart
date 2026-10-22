@@ -39,6 +39,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get platformPs3 => 'PlayStation 3';
 
   @override
+  String get platformPsp => 'PlayStation Portable';
+
+  @override
+  String get platformPsVita => 'PlayStation Vita';
+
+  @override
+  String get platformWii => 'Nintendo Wii';
+
+  @override
+  String get platformWiiU => 'Nintendo Wii U';
+
+  @override
   String get statusReady => 'Ready';
 
   @override
@@ -416,7 +428,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyLibraryDesc =>
-      'Import ROMs or disc images (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) to begin playing.';
+      'Import ROMs or disc images (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin, .pbp, .cso, .vpk, .wbfs, .rvz, .wud, .rpx) to begin playing.';
 
   @override
   String get storageTotalAppSpace => 'Total Storage Used';

@@ -109,3 +109,59 @@ fn test_save_state_zstd() {
     assert_eq!(restored[0], 0xAB);
     assert_eq!(restored[1024 * 1024 - 1], 0xAB);
 }
+
+#[test]
+fn test_psp_memory_stick() {
+    let dir = tempdir().unwrap();
+    let ms = emu_storage::psp_memstick::PspMemoryStick::new(dir.path()).unwrap();
+
+    let save_bytes = b"PSP_SAVEDATA_CHUNK";
+    ms.write_save_data("ULES00001", "DATA.BIN", save_bytes).unwrap();
+    assert!(ms.save_exists("ULES00001"));
+
+    let read_back = ms.read_save_data("ULES00001", "DATA.BIN").unwrap();
+    assert_eq!(read_back, save_bytes);
+}
+
+#[test]
+fn test_psvita_memory_card() {
+    let dir = tempdir().unwrap();
+    let card = emu_storage::psvita_card::PsVitaMemoryCard::new(dir.path()).unwrap();
+
+    let chunk = b"VITA_SLOT_0_PAYLOAD";
+    card.write_save_chunk("PCSF00001", "savedata.bin", chunk).unwrap();
+
+    let read = card.read_save_chunk("PCSF00001", "savedata.bin").unwrap();
+    assert_eq!(read, chunk);
+}
+
+#[test]
+fn test_wii_nand_storage() {
+    let dir = tempdir().unwrap();
+    let nand = emu_storage::wii_nand::WiiNandStorage::new(dir.path()).unwrap();
+
+    let banner = b"WII_BANNER_RGB5A3";
+    nand.write_banner_bin("RSBE01", banner).unwrap();
+
+    let save = b"WII_SAVE_DATA_BLOCK";
+    nand.write_data_bin("RSBE01", save).unwrap();
+
+    let read_save = nand.read_data_bin("RSBE01").unwrap();
+    assert_eq!(read_save, save);
+}
+
+#[test]
+fn test_wiiu_mlc_storage() {
+    let dir = tempdir().unwrap();
+    let mlc = emu_storage::wiiu_mlc::WiiUMlcStorage::new(dir.path()).unwrap();
+
+    let meta = "<xml><title>Super Smash Bros. for Wii U</title></xml>";
+    mlc.write_meta_xml("10145000", meta).unwrap();
+
+    let user_save = b"WIIU_USER_PROFILE_DATA";
+    mlc.write_save_file("10145000", "user.dat", user_save).unwrap();
+
+    let read_user = mlc.read_save_file("10145000", "user.dat").unwrap();
+    assert_eq!(read_user, user_save);
+}
+

@@ -5,8 +5,10 @@ pub mod ps3_pkg;
 pub mod ps3_pup;
 pub mod ps3_self;
 pub mod ps3_sfo;
+pub mod psp_pbp;
 pub mod snes_header;
 pub mod udf250;
+pub mod wbfs;
 
 use std::path::Path;
 use thiserror::Error;
@@ -92,6 +94,10 @@ pub enum MediaType {
     Ps3Pkg,
     Ps3Self,
     Ps3Pup,
+    PspDisc,
+    PsVitaApp,
+    WiiDisc,
+    WiiUDisc,
 }
 
 pub fn detect_media_type(path: &Path) -> Result<MediaType, VfsError> {
@@ -106,6 +112,10 @@ pub fn detect_media_type(path: &Path) -> Result<MediaType, VfsError> {
         "pkg" => Ok(MediaType::Ps3Pkg),
         "self" | "sprx" => Ok(MediaType::Ps3Self),
         "pup" => Ok(MediaType::Ps3Pup),
+        "pbp" | "cso" => Ok(MediaType::PspDisc),
+        "vpk" => Ok(MediaType::PsVitaApp),
+        "wbfs" | "rvz" | "gcm" => Ok(MediaType::WiiDisc),
+        "wud" | "wux" | "rpx" | "wua" => Ok(MediaType::WiiUDisc),
         "zip" => {
             // Inspect ZIP archive local file header
             let file = std::fs::File::open(path)?;
@@ -128,6 +138,14 @@ pub fn detect_media_type(path: &Path) -> Result<MediaType, VfsError> {
                     return Ok(MediaType::SnesRom);
                 } else if inner_name.ends_with(".pkg") {
                     return Ok(MediaType::Ps3Pkg);
+                } else if inner_name.ends_with(".vpk") || inner_name.contains("sce_sys") {
+                    return Ok(MediaType::PsVitaApp);
+                } else if inner_name.ends_with(".pbp") || inner_name.contains("eboot.pbp") {
+                    return Ok(MediaType::PspDisc);
+                } else if inner_name.ends_with(".wbfs") {
+                    return Ok(MediaType::WiiDisc);
+                } else if inner_name.ends_with(".rpx") {
+                    return Ok(MediaType::WiiUDisc);
                 } else if inner_name.ends_with(".bin") || inner_name.ends_with(".cue") || inner_name.ends_with(".iso") {
                     if len > 700 * 1024 * 1024 {
                         return Ok(MediaType::Ps2Disc);
@@ -145,7 +163,7 @@ pub fn detect_media_type(path: &Path) -> Result<MediaType, VfsError> {
                 Ok(MediaType::SnesRom)
             }
         }
-        "iso" | "bin" | "img" | "chd" | "cso" | "zso" => {
+        "iso" | "bin" | "img" | "chd" | "zso" => {
             // Inspect headers using memory map
             let file = std::fs::File::open(path)?;
             let len = file.metadata()?.len();
@@ -159,11 +177,27 @@ pub fn detect_media_type(path: &Path) -> Result<MediaType, VfsError> {
             if len >= 32768 {
                 let mmap = unsafe { memmap2::MmapOptions::new().len(std::cmp::min(len, 0x100000) as usize).map(&file)? };
 
+                // Check Wii disc magic 0x5D1C9EA3 at offset 0x18
+                if mmap.len() >= 0x20 && mmap[0x18..0x1C] == [0x5D, 0x1C, 0x9E, 0xA3] {
+                    return Ok(MediaType::WiiDisc);
+                }
+
+                // Check Wii U disc magic 0xD19F05F7 at offset 0x00
+                if mmap.len() >= 0x04 && mmap[0x00..0x04] == [0xD1, 0x9F, 0x05, 0xF7] {
+                    return Ok(MediaType::WiiUDisc);
+                }
+
+                // Check WBFS header
+                if wbfs::WbfsReader::probe(&mmap) {
+                    return Ok(MediaType::WiiDisc);
+                }
+
                 // Check ISO9660 Volume Descriptor at offset 0x8000 (Sector 16 * 2048)
                 if mmap.len() >= 0x8006 && &mmap[0x8001..0x8006] == b"CD001" {
-                    // Check if it's PS1 or PS2 via SYSTEM.CNF
                     let reader = iso9660::Iso9660Reader::open(path)?;
-                    if reader.has_file("SYSTEM.CNF") {
+                    if reader.has_file("PSP_GAME/PARAM.SFO") || reader.has_file("UMD_DATA.BIN") {
+                        return Ok(MediaType::PspDisc);
+                    } else if reader.has_file("SYSTEM.CNF") {
                         let content = reader.read_file_string("SYSTEM.CNF").unwrap_or_default();
                         if content.contains("BOOT2") {
                             return Ok(MediaType::Ps2Disc);

@@ -7,6 +7,7 @@ import '../../core/logging/app_logger.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../domain/entities/emulation_session_state.dart';
+import '../../domain/entities/game_title.dart';
 import '../touch_controls/touch_overlay.dart';
 
 class ViewportScreen extends ConsumerStatefulWidget {
@@ -286,6 +287,8 @@ class _ViewportScreenState extends ConsumerState<ViewportScreen>
             Positioned.fill(
               child: RepaintBoundary(
                 child: TouchOverlay(
+                  platform: ref.watch(emulationSessionControllerProvider.notifier).activeGame?.platform ??
+                      ConsolePlatform.snes,
                   onPsHomePressed: () =>
                       setState(() => _showQuickMenu = !_showQuickMenu),
                   onButtonPressed: (button, pressed) {

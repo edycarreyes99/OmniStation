@@ -39,6 +39,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get platformPs3 => 'PlayStation 3';
 
   @override
+  String get platformPsp => 'PlayStation Portable';
+
+  @override
+  String get platformPsVita => 'PlayStation Vita';
+
+  @override
+  String get platformWii => '닌텐도 Wii';
+
+  @override
+  String get platformWiiU => '닌텐도 Wii U';
+
+  @override
   String get statusReady => '준비 완료';
 
   @override

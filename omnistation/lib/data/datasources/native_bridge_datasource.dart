@@ -83,6 +83,25 @@ typedef OmnistationSnesSetButtonDart = int Function(int button, int pressed);
 typedef OmnistationSnesStopNative = Int32 Function();
 typedef OmnistationSnesStopDart = int Function();
 
+typedef OmnistationCoreBootNative = Int32 Function(Uint32 platformId, Pointer<Utf8> path);
+typedef OmnistationCoreBootDart = int Function(int platformId, Pointer<Utf8> path);
+
+typedef OmnistationCoreStepFrameNative = Int32 Function(Uint32 platformId);
+typedef OmnistationCoreStepFrameDart = int Function(int platformId);
+
+typedef OmnistationCoreGetFramebufferNative = Int32 Function(
+    Uint32 platformId, Pointer<Uint8> outBuf, IntPtr maxLen);
+typedef OmnistationCoreGetFramebufferDart = int Function(
+    int platformId, Pointer<Uint8> outBuf, int maxLen);
+
+typedef OmnistationCoreSetButtonNative = Int32 Function(
+    Uint32 platformId, Int32 button, Int32 pressed);
+typedef OmnistationCoreSetButtonDart = int Function(
+    int platformId, int button, int pressed);
+
+typedef OmnistationCoreStopNative = Int32 Function(Uint32 platformId);
+typedef OmnistationCoreStopDart = int Function(int platformId);
+
 class NativeBridgeDataSource {
   DynamicLibrary? _dylib;
   OmnistationInitDart? _initFn;
@@ -94,6 +113,11 @@ class NativeBridgeDataSource {
   OmnistationSnesGetFramebufferDart? _snesGetFramebufferFn;
   OmnistationSnesSetButtonDart? _snesSetButtonFn;
   OmnistationSnesStopDart? _snesStopFn;
+  OmnistationCoreBootDart? _coreBootFn;
+  OmnistationCoreStepFrameDart? _coreStepFrameFn;
+  OmnistationCoreGetFramebufferDart? _coreGetFramebufferFn;
+  OmnistationCoreSetButtonDart? _coreSetButtonFn;
+  OmnistationCoreStopDart? _coreStopFn;
   Pointer<Uint8>? _framebufferPtr;
   bool _isInitialized = false;
 
@@ -199,7 +223,22 @@ class NativeBridgeDataSource {
               OmnistationSnesSetButtonDart>('omnistation_snes_set_button');
           _snesStopFn = _dylib!.lookupFunction<OmnistationSnesStopNative,
               OmnistationSnesStopDart>('omnistation_snes_stop');
-          AppLogger.info('NativeBridge', 'FFI functions registered: init=${_initFn != null}, loadMedia=${_loadMediaFn != null}, snesBoot=${_snesBootFn != null}, snesStep=${_snesStepFrameFn != null}');
+          try {
+            _coreBootFn = _dylib!.lookupFunction<OmnistationCoreBootNative,
+                OmnistationCoreBootDart>('omnistation_core_boot');
+            _coreStepFrameFn = _dylib!.lookupFunction<OmnistationCoreStepFrameNative,
+                OmnistationCoreStepFrameDart>('omnistation_core_step_frame');
+            _coreGetFramebufferFn = _dylib!.lookupFunction<
+                OmnistationCoreGetFramebufferNative,
+                OmnistationCoreGetFramebufferDart>('omnistation_core_get_framebuffer');
+            _coreSetButtonFn = _dylib!.lookupFunction<OmnistationCoreSetButtonNative,
+                OmnistationCoreSetButtonDart>('omnistation_core_set_button');
+            _coreStopFn = _dylib!.lookupFunction<OmnistationCoreStopNative,
+                OmnistationCoreStopDart>('omnistation_core_stop');
+          } catch (_) {
+            AppLogger.warn('NativeBridge', 'Universal core symbols lookup failed; falling back to legacy core functions');
+          }
+          AppLogger.info('NativeBridge', 'FFI functions registered: init=${_initFn != null}, loadMedia=${_loadMediaFn != null}, coreBoot=${_coreBootFn != null}, snesBoot=${_snesBootFn != null}');
         } catch (e, st) {
           AppLogger.error('NativeBridge', 'Symbol lookup failed: $e', e, st);
         }
@@ -307,7 +346,12 @@ class NativeBridgeDataSource {
           1 => ConsolePlatform.snes,
           2 => ConsolePlatform.ps1,
           3 => ConsolePlatform.ps2,
-          _ => ConsolePlatform.ps3,
+          4 => ConsolePlatform.ps3,
+          5 => ConsolePlatform.psp,
+          6 => ConsolePlatform.psvita,
+          7 => ConsolePlatform.wii,
+          8 => ConsolePlatform.wiiu,
+          _ => ConsolePlatform.snes,
         };
 
         // Extract title name
@@ -322,6 +366,7 @@ class NativeBridgeDataSource {
         final isGeneric = rawTitle.isEmpty ||
             rawTitle.startsWith('PlayStation') ||
             rawTitle.startsWith('Super Nintendo') ||
+            rawTitle.startsWith('Nintendo') ||
             rawTitle == 'OmniStation Game';
         final title = isGeneric ? filename : rawTitle;
 
@@ -349,7 +394,12 @@ class NativeBridgeDataSource {
     final platform = switch (ext) {
       'sfc' || 'smc' || 'msc' => ConsolePlatform.snes,
       'bin' || 'cue' => ConsolePlatform.ps1,
-      'chd' || 'cso' || 'zso' => ConsolePlatform.ps2,
+      'chd' || 'zso' => ConsolePlatform.ps2,
+      'pkg' || 'self' || 'sprx' => ConsolePlatform.ps3,
+      'pbp' || 'cso' => ConsolePlatform.psp,
+      'vpk' => ConsolePlatform.psvita,
+      'wbfs' || 'rvz' || 'gcm' => ConsolePlatform.wii,
+      'wud' || 'wux' || 'rpx' || 'wua' => ConsolePlatform.wiiu,
       'zip' => ConsolePlatform.snes,
       _ => ConsolePlatform.ps3,
     };
@@ -480,6 +530,98 @@ class NativeBridgeDataSource {
       } catch (e, st) {
         AppLogger.error('NativeBridge', 'Exception during stopSnes: $e', e, st);
       }
+    }
+  }
+
+  int getPlatformId(ConsolePlatform platform) {
+    return switch (platform) {
+      ConsolePlatform.snes => 1,
+      ConsolePlatform.ps1 => 2,
+      ConsolePlatform.ps2 => 3,
+      ConsolePlatform.ps3 => 4,
+      ConsolePlatform.psp => 5,
+      ConsolePlatform.psvita => 6,
+      ConsolePlatform.wii => 7,
+      ConsolePlatform.wiiu => 8,
+    };
+  }
+
+  bool bootCore(ConsolePlatform platform, String path) {
+    AppLogger.info('NativeBridge', 'bootCore requested for platform: ${platform.name}, path: $path');
+    final platId = getPlatformId(platform);
+    if (_coreBootFn != null) {
+      final ptr = path.toNativeUtf8();
+      try {
+        final res = _coreBootFn!(platId, ptr);
+        return res == 0;
+      } catch (e, st) {
+        AppLogger.error('NativeBridge', 'Exception during coreBoot: $e', e, st);
+        return false;
+      } finally {
+        calloc.free(ptr);
+      }
+    } else if (platform == ConsolePlatform.snes) {
+      return bootSnes(path);
+    }
+    return true;
+  }
+
+  bool stepCoreFrame(ConsolePlatform platform) {
+    final platId = getPlatformId(platform);
+    if (_coreStepFrameFn != null) {
+      try {
+        final res = _coreStepFrameFn!(platId);
+        return res == 0;
+      } catch (e, st) {
+        AppLogger.error('NativeBridge', 'Exception during stepCoreFrame: $e', e, st);
+        return false;
+      }
+    } else if (platform == ConsolePlatform.snes) {
+      return stepSnesFrame();
+    }
+    return true;
+  }
+
+  Uint8List? getCorePixels(ConsolePlatform platform) {
+    final platId = getPlatformId(platform);
+    if (_coreGetFramebufferFn != null && _framebufferPtr != null) {
+      try {
+        final len = _coreGetFramebufferFn!(platId, _framebufferPtr!, 512 * 480 * 4);
+        if (len > 0) {
+          return _framebufferPtr!.asTypedList(len);
+        }
+      } catch (e, st) {
+        AppLogger.error('NativeBridge', 'Exception during getCorePixels: $e', e, st);
+      }
+    } else if (platform == ConsolePlatform.snes) {
+      return getSnesPixels();
+    }
+    return null;
+  }
+
+  void setCoreButton(ConsolePlatform platform, int button, bool pressed) {
+    final platId = getPlatformId(platform);
+    if (_coreSetButtonFn != null) {
+      try {
+        _coreSetButtonFn!(platId, button, pressed ? 1 : 0);
+      } catch (e) {
+        AppLogger.warn('NativeBridge', 'Failed to dispatch core button event: $e');
+      }
+    } else if (platform == ConsolePlatform.snes) {
+      setSnesButton(button, pressed);
+    }
+  }
+
+  void stopCore(ConsolePlatform platform) {
+    final platId = getPlatformId(platform);
+    if (_coreStopFn != null) {
+      try {
+        _coreStopFn!(platId);
+      } catch (e, st) {
+        AppLogger.error('NativeBridge', 'Exception during stopCore: $e', e, st);
+      }
+    } else if (platform == ConsolePlatform.snes) {
+      stopSnes();
     }
   }
 

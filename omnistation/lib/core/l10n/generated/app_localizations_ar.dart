@@ -39,6 +39,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get platformPs3 => 'بلاي ستيشن 3';
 
   @override
+  String get platformPsp => 'بلاي ستيشن بورتابل';
+
+  @override
+  String get platformPsVita => 'بلاي ستيشن فيتا';
+
+  @override
+  String get platformWii => 'نينتندو وي';
+
+  @override
+  String get platformWiiU => 'نينتندو وي يو';
+
+  @override
   String get statusReady => 'جاهز';
 
   @override

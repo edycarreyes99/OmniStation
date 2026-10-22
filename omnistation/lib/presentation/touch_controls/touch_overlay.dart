@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
+import '../../domain/entities/game_title.dart';
 
 class TouchOverlay extends StatefulWidget {
   final VoidCallback onPsHomePressed;
   final void Function(int button, bool pressed)? onButtonPressed;
+  final ConsolePlatform platform;
 
   const TouchOverlay({
     super.key,
     required this.onPsHomePressed,
     this.onButtonPressed,
+    this.platform = ConsolePlatform.snes,
   });
 
   @override
@@ -57,9 +60,12 @@ class _TouchOverlayState extends State<TouchOverlay> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildPillButton(l10n.btnSelect, 2),
+                _buildPillButton(
+                  widget.platform == ConsolePlatform.wii ? '—' : l10n.btnSelect,
+                  2,
+                ),
                 const SizedBox(width: 16),
-                // Dedicated PS Home Button
+                // Dedicated PS / Home Button
                 GestureDetector(
                   onTap: widget.onPsHomePressed,
                   child: Container(
@@ -83,47 +89,67 @@ class _TouchOverlayState extends State<TouchOverlay> {
                   ),
                 ),
                 const SizedBox(width: 16),
-                _buildPillButton(l10n.btnStart, 3),
+                _buildPillButton(
+                  widget.platform == ConsolePlatform.wii ? '＋' : l10n.btnStart,
+                  3,
+                ),
               ],
             ),
           ),
 
-          // Right Side: Action Buttons and Right Analog Stick
+          // Right Side: Action Buttons and optional Right Analog Stick
           Positioned(
             right: 20,
             bottom: 40,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Action Buttons: Triangle, Square, Circle, Cross
                 _buildActionButtons(),
-                const SizedBox(height: 20),
-                // Right Thumbstick
-                _buildThumbstick(
-                  pos: _rightThumbstickPos,
-                  onPanUpdate: (offset) =>
-                      setState(() => _rightThumbstickPos = offset),
-                  onPanEnd: () =>
-                      setState(() => _rightThumbstickPos = Offset.zero),
-                ),
+                // PSP and Wii don't use a right analog stick on standard controllers
+                if (widget.platform != ConsolePlatform.psp && widget.platform != ConsolePlatform.wii) ...[
+                  const SizedBox(height: 20),
+                  _buildThumbstick(
+                    pos: _rightThumbstickPos,
+                    onPanUpdate: (offset) =>
+                        setState(() => _rightThumbstickPos = offset),
+                    onPanEnd: () =>
+                        setState(() => _rightThumbstickPos = Offset.zero),
+                  ),
+                ],
               ],
             ),
           ),
 
-          // Top Triggers: L1, L2, R1, R2
+          // Top Triggers
           Positioned(
             top: 10,
             left: 20,
             right: 20,
             child: Row(
               children: [
-                _buildShoulderButton(l10n.btnL2, 10),
-                const SizedBox(width: 8),
-                _buildShoulderButton(l10n.btnL1, 10),
+                if (widget.platform != ConsolePlatform.psp && widget.platform != ConsolePlatform.psvita) ...[
+                  _buildShoulderButton(
+                    widget.platform == ConsolePlatform.wii ? 'Z' : (widget.platform == ConsolePlatform.wiiu ? 'ZL' : l10n.btnL2),
+                    10,
+                  ),
+                  const SizedBox(width: 8),
+                ],
+                _buildShoulderButton(
+                  widget.platform == ConsolePlatform.wii ? 'C' : (widget.platform == ConsolePlatform.wiiu ? 'L' : l10n.btnL1),
+                  10,
+                ),
                 const Spacer(),
-                _buildShoulderButton(l10n.btnR1, 11),
-                const SizedBox(width: 8),
-                _buildShoulderButton(l10n.btnR2, 11),
+                _buildShoulderButton(
+                  widget.platform == ConsolePlatform.wii ? 'B' : (widget.platform == ConsolePlatform.wiiu ? 'R' : l10n.btnR1),
+                  11,
+                ),
+                if (widget.platform != ConsolePlatform.psp && widget.platform != ConsolePlatform.psvita) ...[
+                  const SizedBox(width: 8),
+                  _buildShoulderButton(
+                    widget.platform == ConsolePlatform.wii ? 'A' : (widget.platform == ConsolePlatform.wiiu ? 'ZR' : l10n.btnR2),
+                    11,
+                  ),
+                ],
               ],
             ),
           ),

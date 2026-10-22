@@ -55,3 +55,9 @@ impl AtomicFile {
         self.target_path.exists()
     }
 }
+
+pub fn write_atomic(path: impl AsRef<Path>, data: &[u8]) -> io::Result<()> {
+    let mut af = AtomicFile::new(path);
+    af.write_atomic(data)
+}
+

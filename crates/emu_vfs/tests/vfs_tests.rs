@@ -3,6 +3,8 @@ use emu_vfs::ps3_pup::PupExtractor;
 use emu_vfs::ps3_self::SelfParser;
 use emu_vfs::ps3_sfo::ParamSfo;
 use emu_vfs::snes_header::{ExpansionChip, SnesHeaderParser, SnesMapMode};
+use emu_vfs::psp_pbp::PspPbpReader;
+use emu_vfs::wbfs::WbfsReader;
 use emu_vfs::{detect_media_type, MediaType};
 use std::fs::File;
 use std::io::Write;
@@ -112,6 +114,64 @@ fn test_snes_header_parse() {
 }
 
 #[test]
+fn test_psp_pbp_reader() {
+    let dir = tempdir().unwrap();
+    let pbp_path = dir.path().join("EBOOT.PBP");
+
+    // Header: \x00PBP + version 0x00010000 + 8 offsets of 4 bytes each = 40 bytes
+    let mut pbp_data = vec![0x00, b'P', b'B', b'P'];
+    pbp_data.extend_from_slice(&0x00010000u32.to_le_bytes()); // version
+    pbp_data.extend_from_slice(&40u32.to_le_bytes()); // offset_param_sfo (at 40)
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_icon0_png (at 64)
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_icon1_pmf
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_pic0_png
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_pic1_png
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_snd0_at3
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_data_psp
+    pbp_data.extend_from_slice(&64u32.to_le_bytes()); // offset_data_psar
+
+    // SFO payload from offset 40 to 64 (24 bytes)
+    pbp_data.extend_from_slice(&[0x42u8; 24]);
+
+    let mut file = File::create(&pbp_path).unwrap();
+    file.write_all(&pbp_data).unwrap();
+
+    let reader = PspPbpReader::open(&pbp_path).expect("PSP PBP open failed");
+    assert_eq!(reader.header.version, 0x00010000);
+    assert_eq!(reader.header.offset_param_sfo, 40);
+    let sfo_bytes = reader.read_param_sfo_bytes(&pbp_path).expect("read_param_sfo failed");
+    assert_eq!(sfo_bytes.len(), 24);
+    assert_eq!(sfo_bytes[0], 0x42);
+}
+
+#[test]
+fn test_wbfs_reader() {
+    let dir = tempdir().unwrap();
+    let wbfs_path = dir.path().join("game.wbfs");
+
+    // WBFS header: 512 bytes + disc info 64 bytes
+    let mut wbfs_data = vec![b'W', b'B', b'F', b'S'];
+    wbfs_data.extend_from_slice(&1000u32.to_be_bytes()); // n_hd_sec
+    wbfs_data.push(9); // hd_sec_sz_s (512)
+    wbfs_data.push(21); // wbfs_sec_sz_s (2MB)
+    wbfs_data.resize(512, 0);
+
+    // Disc header: 6 bytes disc_id, pad, 0x20..0x40 title
+    let mut disc_hdr = [0u8; 64];
+    disc_hdr[0..6].copy_from_slice(b"SB7E01");
+    let title = b"Super Mario Galaxy 2";
+    disc_hdr[0x20..0x20 + title.len()].copy_from_slice(title);
+    wbfs_data.extend_from_slice(&disc_hdr);
+
+    let mut file = File::create(&wbfs_path).unwrap();
+    file.write_all(&wbfs_data).unwrap();
+
+    let reader = WbfsReader::open(&wbfs_path).expect("WBFS open failed");
+    assert_eq!(reader.disc_id, "SB7E01");
+    assert_eq!(reader.disc_title, "Super Mario Galaxy 2");
+}
+
+#[test]
 fn test_media_detection() {
     let dir = tempdir().unwrap();
     let sfc_file = dir.path().join("game.sfc");
@@ -126,6 +186,38 @@ fn test_media_detection() {
     let msc_file = dir.path().join("game.msc");
     File::create(&msc_file).unwrap();
     assert_eq!(detect_media_type(&msc_file).unwrap(), MediaType::SnesRom);
+
+    // PSP formats
+    let pbp_file = dir.path().join("EBOOT.PBP");
+    File::create(&pbp_file).unwrap();
+    assert_eq!(detect_media_type(&pbp_file).unwrap(), MediaType::PspDisc);
+
+    let cso_file = dir.path().join("game.cso");
+    File::create(&cso_file).unwrap();
+    assert_eq!(detect_media_type(&cso_file).unwrap(), MediaType::PspDisc);
+
+    // PS Vita formats
+    let vpk_file = dir.path().join("game.vpk");
+    File::create(&vpk_file).unwrap();
+    assert_eq!(detect_media_type(&vpk_file).unwrap(), MediaType::PsVitaApp);
+
+    // Wii formats
+    let wbfs_file = dir.path().join("game.wbfs");
+    File::create(&wbfs_file).unwrap();
+    assert_eq!(detect_media_type(&wbfs_file).unwrap(), MediaType::WiiDisc);
+
+    let rvz_file = dir.path().join("game.rvz");
+    File::create(&rvz_file).unwrap();
+    assert_eq!(detect_media_type(&rvz_file).unwrap(), MediaType::WiiDisc);
+
+    // Wii U formats
+    let wud_file = dir.path().join("game.wud");
+    File::create(&wud_file).unwrap();
+    assert_eq!(detect_media_type(&wud_file).unwrap(), MediaType::WiiUDisc);
+
+    let rpx_file = dir.path().join("game.rpx");
+    File::create(&rpx_file).unwrap();
+    assert_eq!(detect_media_type(&rpx_file).unwrap(), MediaType::WiiUDisc);
 
     // Test .zip format containing SNES ROM
     let zip_file = dir.path().join("archive.zip");

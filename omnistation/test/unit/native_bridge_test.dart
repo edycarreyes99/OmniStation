@@ -66,6 +66,52 @@ void main() {
       expect(game.title, equals('DemonSouls'));
     });
 
+    test('loadMedia parses PSP formats (pbp, cso) correctly', () async {
+      final gamePbp = await dataSource.loadMedia('/games/psp/MonsterHunter.pbp');
+      expect(gamePbp.platform, equals(ConsolePlatform.psp));
+      expect(gamePbp.title, equals('MonsterHunter'));
+
+      final gameCso = await dataSource.loadMedia('/games/psp/CrisisCore.cso');
+      expect(gameCso.platform, equals(ConsolePlatform.psp));
+      expect(gameCso.title, equals('CrisisCore'));
+    });
+
+    test('loadMedia parses PS Vita format (vpk) correctly', () async {
+      final game = await dataSource.loadMedia('/games/psvita/Persona4Golden.vpk');
+      expect(game.platform, equals(ConsolePlatform.psvita));
+      expect(game.title, equals('Persona4Golden'));
+    });
+
+    test('loadMedia parses Wii formats (wbfs, rvz, gcm) correctly', () async {
+      final gameWbfs = await dataSource.loadMedia('/games/wii/MarioGalaxy.wbfs');
+      expect(gameWbfs.platform, equals(ConsolePlatform.wii));
+      expect(gameWbfs.title, equals('MarioGalaxy'));
+
+      final gameRvz = await dataSource.loadMedia('/games/wii/ZeldaSkywardSword.rvz');
+      expect(gameRvz.platform, equals(ConsolePlatform.wii));
+      expect(gameRvz.title, equals('ZeldaSkywardSword'));
+    });
+
+    test('loadMedia parses Wii U formats (wud, wux, rpx, wua) correctly', () async {
+      final gameWud = await dataSource.loadMedia('/games/wiiu/ZeldaBreathOfTheWild.wud');
+      expect(gameWud.platform, equals(ConsolePlatform.wiiu));
+      expect(gameWud.title, equals('ZeldaBreathOfTheWild'));
+
+      final gameRpx = await dataSource.loadMedia('/games/wiiu/MarioKart8.rpx');
+      expect(gameRpx.platform, equals(ConsolePlatform.wiiu));
+      expect(gameRpx.title, equals('MarioKart8'));
+    });
+
+    test('Universal core methods execute without throwing for all platforms', () {
+      for (final plat in ConsolePlatform.values) {
+        expect(dataSource.getPlatformId(plat), inInclusiveRange(1, 8));
+        dataSource.setCoreButton(plat, 0, true);
+        dataSource.setCoreButton(plat, 0, false);
+        dataSource.stepCoreFrame(plat);
+        dataSource.stopCore(plat);
+      }
+    });
+
     test('getTelemetry returns valid default state', () async {
       final telemetry = await dataSource.getTelemetry();
       expect(telemetry.status, equals(CoreExecutionState.running));

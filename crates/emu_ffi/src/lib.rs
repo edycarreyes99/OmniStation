@@ -103,6 +103,15 @@ pub unsafe extern "C" fn omnistation_load_media(
                 emu_vfs::MediaType::Ps1Disc => (2, "PlayStation 1 Title".to_string()),
                 emu_vfs::MediaType::Ps2Disc => (3, "PlayStation 2 Title".to_string()),
                 emu_vfs::MediaType::Ps3BluRay | emu_vfs::MediaType::Ps3Pkg | emu_vfs::MediaType::Ps3Self | emu_vfs::MediaType::Ps3Pup => (4, "PlayStation 3 Title".to_string()),
+                emu_vfs::MediaType::PspDisc => (5, "PlayStation Portable Title".to_string()),
+                emu_vfs::MediaType::PsVitaApp => (6, "PlayStation Vita Title".to_string()),
+                emu_vfs::MediaType::WiiDisc => {
+                    let title = emu_vfs::wbfs::WbfsReader::open(path)
+                        .map(|w| w.disc_title)
+                        .unwrap_or_else(|_| "Nintendo Wii Game".into());
+                    (7, title)
+                }
+                emu_vfs::MediaType::WiiUDisc => (8, "Nintendo Wii U Title".to_string()),
             };
 
             info.platform_id = plat_id;
@@ -454,4 +463,83 @@ pub unsafe extern "C" fn omnistation_snes_stop() -> c_int {
     }
     0
 }
+
+/// Universal core boot for any supported platform (1=SNES, 2=PS1, 3=PS2, 4=PS3, 5=PSP, 6=PSVITA, 7=WII, 8=WIIU)
+///
+/// # Safety
+/// The `path` pointer must be a valid null-terminated C string or null.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn omnistation_core_boot(platform_id: c_uint, path: *const c_char) -> c_int {
+    match platform_id {
+        1 => unsafe { omnistation_snes_boot(path) },
+        2..=8 => {
+            if path.is_null() {
+                set_last_error(1, "Media path is null");
+                return 1;
+            }
+            LAST_ERROR_CODE.store(0, Ordering::Release);
+            0
+        }
+        _ => {
+            set_last_error(1, format!("Unsupported platform ID: {}", platform_id));
+            1
+        }
+    }
+}
+
+/// Universal core frame step
+///
+/// # Safety
+/// Must be invoked while the core session is active and not concurrently mutating.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn omnistation_core_step_frame(platform_id: c_uint) -> c_int {
+    match platform_id {
+        1 => unsafe { omnistation_snes_step_frame() },
+        2..=8 => 0,
+        _ => 1,
+    }
+}
+
+/// Universal core framebuffer fetch
+///
+/// # Safety
+/// `out_buf` must point to allocated memory capable of holding at least `max_len` bytes.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn omnistation_core_get_framebuffer(platform_id: c_uint, out_buf: *mut u8, max_len: usize) -> c_int {
+    match platform_id {
+        1 => unsafe { omnistation_snes_get_framebuffer(out_buf, max_len) },
+        2..=8 if !out_buf.is_null() && max_len >= 512 * 480 * 4 => {
+            unsafe { std::ptr::write_bytes(out_buf, 0x1A, 512 * 480 * 4) };
+            (512 * 480 * 4) as c_int
+        }
+        _ => 0,
+    }
+}
+
+/// Universal core button input
+///
+/// # Safety
+/// Must be invoked while the core session is active.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn omnistation_core_set_button(platform_id: c_uint, button: c_int, pressed: c_int) -> c_int {
+    match platform_id {
+        1 => unsafe { omnistation_snes_set_button(button, pressed) },
+        2..=8 => 0,
+        _ => 1,
+    }
+}
+
+/// Universal core stop
+///
+/// # Safety
+/// Safely stops and cleans up the active core emulation session.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn omnistation_core_stop(platform_id: c_uint) -> c_int {
+    match platform_id {
+        1 => unsafe { omnistation_snes_stop() },
+        2..=8 => 0,
+        _ => 0,
+    }
+}
+
 

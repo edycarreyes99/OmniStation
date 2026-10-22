@@ -12,6 +12,11 @@
   "platformPs1": "PlayStation 1",
   "platformPs2": "PlayStation 2",
   "platformPs3": "PlayStation 3",
+  "platformPsp": "PlayStation Portable",
+  "platformPsVita": "PlayStation Vita",
+  "platformWii": "Nintendo Wii",
+  "platformWiiU": "Nintendo Wii U",
+
   
   "statusReady": "Listo",
   "statusRunning": "En ejecución",
@@ -165,7 +170,7 @@
   "msgGameImportSuccess": "Juego importado con éxito: {title}",
   "msgGameImportFailed": "Error al importar el juego: {error}",
   "emptyLibraryTitle": "No Hay Juegos Instalados",
-  "emptyLibraryDesc": "Importa ROMs o imágenes de disco (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) para comenzar a jugar.",
+  "emptyLibraryDesc": "Importa ROMs o imágenes de disco (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin, .pbp, .cso, .vpk, .wbfs, .rvz, .wud, .rpx) para comenzar a jugar.",
   "storageTotalAppSpace": "Almacenamiento Total Usado",
   "storageGamesSpace": "Juegos Instalados",
   "storageSavesSpace": "Estados Guardados y SRAM",

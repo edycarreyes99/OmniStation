@@ -3,8 +3,12 @@ pub mod ps1_card;
 pub mod ps2_card;
 pub mod ps3_hdd;
 pub mod ps3_trophy;
+pub mod psp_memstick;
+pub mod psvita_card;
 pub mod save_state;
 pub mod snes_sram;
+pub mod wii_nand;
+pub mod wiiu_mlc;
 
 use thiserror::Error;
 

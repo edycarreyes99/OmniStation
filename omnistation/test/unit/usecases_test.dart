@@ -77,6 +77,21 @@ class MockEmulationRepository implements IEmulationRepository {
   void stopSnes() {}
 
   @override
+  bool bootCore(ConsolePlatform platform, String path) => true;
+
+  @override
+  bool stepCoreFrame(ConsolePlatform platform) => true;
+
+  @override
+  Uint8List? getCorePixels(ConsolePlatform platform) => null;
+
+  @override
+  void setCoreButton(ConsolePlatform platform, int button, bool pressed) {}
+
+  @override
+  void stopCore(ConsolePlatform platform) {}
+
+  @override
   String getLastErrorDescription() => '';
 }
 
@@ -270,6 +285,50 @@ void main() {
       expect(container.read(emulationSessionControllerProvider).status,
           equals(CoreExecutionState.stopped));
       expect(controller.activeGame, isNull);
+    });
+
+    test('All 8 console platforms are registered and supported in ConsolePlatform enum', () {
+      expect(ConsolePlatform.values.length, equals(8));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.snes));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.ps1));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.ps2));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.ps3));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.psp));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.psvita));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.wii));
+      expect(ConsolePlatform.values, contains(ConsolePlatform.wiiu));
+    });
+
+    test('EmulationSessionController boots PSP, PS Vita, Wii, and Wii U titles', () async {
+      final controller =
+          container.read(emulationSessionControllerProvider.notifier);
+
+      for (final plat in [
+        ConsolePlatform.psp,
+        ConsolePlatform.psvita,
+        ConsolePlatform.wii,
+        ConsolePlatform.wiiu,
+      ]) {
+        final game = GameTitle(
+          id: 'test_${plat.name}',
+          title: 'Test Game ${plat.name}',
+          platform: plat,
+          path: '/test/game.${plat.name}',
+          serial: 'TEST0001',
+        );
+
+        controller.activeGame = game;
+        expect(controller.activeGame?.platform, equals(plat));
+
+        // Test input sending doesn't throw
+        controller.sendInput(0, true);
+        controller.sendInput(0, false);
+
+        controller.stop();
+        expect(container.read(emulationSessionControllerProvider).status,
+            equals(CoreExecutionState.stopped));
+        expect(controller.activeGame, isNull);
+      }
     });
   });
 }

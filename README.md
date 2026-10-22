@@ -3,19 +3,23 @@
 [![C++23 Standard](https://img.shields.io/badge/C%2B%2B-23%20Standard-blue.svg?logo=c%2B%2B)](https://en.cppreference.com/w/cpp/23)
 [![Rust Edition 2024](https://img.shields.io/badge/Rust-Edition%202024-orange.svg?logo=rust)](https://www.rust-lang.org/)
 [![Flutter 3.x Impeller](https://img.shields.io/badge/Flutter-3.x%20Impeller-02569B.svg?logo=flutter)](https://flutter.dev)
-[![C++ GoogleTest](https://img.shields.io/badge/GoogleTest-7%20passed-brightgreen.svg)]()
-[![Cargo Workspace Tests](https://img.shields.io/badge/Cargo%20Tests-18%20passed-brightgreen.svg)]()
-[![Flutter Unit & Widget Tests](https://img.shields.io/badge/Flutter%20Tests-54%20passed-brightgreen.svg)]()
+[![C++ GoogleTest](https://img.shields.io/badge/GoogleTest-11%20passed-brightgreen.svg)]()
+[![Cargo Workspace Tests](https://img.shields.io/badge/Cargo%20Tests-24%20passed-brightgreen.svg)]()
+[![Flutter Unit & Widget Tests](https://img.shields.io/badge/Flutter%20Tests-63%20passed-brightgreen.svg)]()
 [![Code Quality](https://img.shields.io/badge/Clippy%20%7C%20Clangd%20%7C%20Analyze-0%20warnings-brightgreen.svg)]()
 [![Architecture](https://img.shields.io/badge/Architecture-Clean%20%7C%20Tri--Tier%20Hybrid-purple.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-informational.svg)](LICENSE)
 
-**OmniStation** is an international-standard, low-overhead multi-console emulation platform engineered from the ground up to achieve native hardware execution speeds, cycle-accurate timing, and sub-millisecond audio/video latency across four iconic console generations:
+**OmniStation** is an international-standard, low-overhead multi-console emulation platform engineered from the ground up to achieve native hardware execution speeds, cycle-accurate timing, and sub-millisecond audio/video latency across eight iconic console platforms:
 
 1. **Sony PlayStation 3 (Cell Broadband Engine + RSX)**
 2. **Sony PlayStation 2 (Emotion Engine + VU0/VU1 + Graphics Synthesizer)**
 3. **Sony PlayStation 1 (MIPS R3000A + GTE + PGXP)**
 4. **Super Nintendo Entertainment System (Ricoh 5A22 + SPC700 + Mode 7)**
+5. **Sony PlayStation Portable (PSP) (Allegrex MIPS R4000 + VFPU + Graphics Core)**
+6. **Sony PlayStation Vita (PS Vita) (Quad-core ARM Cortex-A9 MPCore + PowerVR SGX543MP4+)**
+7. **Nintendo Wii (Broadway PowerPC 750CL + Hollywood GX GPU + Wiimote)**
+8. **Nintendo Wii U (Espresso Tri-Core PowerPC 750CL + Latte GX2 GPU + GamePad)**
 
 OmniStation employs a **Tri-Tier Hybrid Architecture**:
 - **C++23**: Low-level hardware emulation cores, SIMD-vectorized execution pipelines, and a dual-mapping Dynamic Recompilation (Dynarec / JIT) engine.
@@ -82,9 +86,13 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
   - **Universal Game Media Import**: Real OS file picker dialog integration (`file_picker`) supporting:
     - Super Nintendo & ZSNES: `.smc`, `.sfc`, `.msc` (ZSNES native format).
     - Compressed Multi-System Archives: `.zip` (inspecting local header entry magic `PK\x03\x04`).
-    - PlayStation 1: `.iso`, `.bin`, `.cue`, `.chd`, `.pbp`.
+    - PlayStation 1: `.iso`, `.bin`, `.cue`, `.chd`.
     - PlayStation 2: `.iso`, `.bin`, `.chd`, `.cso`, `.zso`.
     - PlayStation 3: `.iso`, `.pkg`, `.pup`, `.self`, `.bin`.
+    - PlayStation Portable (PSP): `.pbp` (EBOOT), `.cso`, `.iso`.
+    - PlayStation Vita (PS Vita): `.vpk` (homebrew/app package).
+    - Nintendo Wii: `.wbfs`, `.rvz`, `.gcm`, `.iso`.
+    - Nintendo Wii U: `.wud`, `.wux`, `.rpx`, `.wua`.
   - **Filesystem Persistence & Lifecycle**: Imported games are automatically copied to persistent sandboxed application storage (`games/`), metadata/checksums extracted, indexed in local registry, and can be removed directly with disk deletion.
   - **Real Physical Storage Breakdown**: Live directory tree size computation across `games/`, `saves/`, `memory_cards/`, and `cache/` with one-tap real cache clearing.
 - **Internationalization & Clean Presentation**:
@@ -103,6 +111,10 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
 | **PlayStation 2** | **Emotion Engine** (128-bit MIPS R5900 @ 294.912 MHz), **VU0 / VU1 Vector Units** (Microcode execution), **Graphics Synthesizer (GS)**, **SPU2**. | Dual Vector Unit microcode interpreter/JIT, GS software/hardware rasterizer, MagicGate encrypted 8MB VMC, lock-free DMA controller. | Cycle-Synchronous Core Bus Emulation |
 | **PlayStation 1** | **MIPS R3000A** (33.8688 MHz), **Geometry Transformation Engine (GTE)**, **PS1 GPU** (VRAM 1MB), **SPU** (24 voices ADPCM). | Fixed-point math vectorization, **PGXP (Parallel Precision Geometry Transformation)** subpixel perspective correction, 128KB memory card parser. | Bit-Exact GTE & PGXP Subpixel Precision |
 | **SNES** | **Ricoh 5A22** (16-bit 65C816 @ 3.58 MHz), **Sony SPC700 APU** (8-channel 16-bit DSP), **Mode 7 PPU** (Matrix affine transformations). | Cycle-stepped CPU bus scheduler, DSP Gaussian interpolation filter, Mode 7 affine matrix renderer, Battery SRAM backup persistence. | Cycle-Accurate Timing |
+| **PSP** | **Allegrex MIPS R4000** (333 MHz), **Vector Floating Point Unit (VFPU)** (128-bit SIMD), **PSP Graphics Core** (2MB eDRAM), **Virtual Media Engine (VME)**. | VFPU matrix pipeline transforms, Memory Stick PRO Duo `ms0:` virtual FAT filesystem, PBP unpacker and CSO Zstandard decompressor. | Cycle-Stepped VFPU Vector Execution |
+| **PS Vita** | **Quad-Core ARM Cortex-A9 MPCore** (ARMv7-A @ 444 MHz), **PowerVR SGX543MP4+** (4-core GPU), **OLED Multi-Touch Digitizer**. | ARM NEON SIMD vectorization, multi-core cooperative thread scheduler, `ux0:` memory card filesystem, VPK archive installer. | High-Level OS Syscall HLE Emulation |
+| **Nintendo Wii** | **Broadway PowerPC 750CL** (729 MHz), **Hollywood GX GPU** (243 MHz), **Wiimote IR Pointer & MotionPlus**. | Paired-Single SIMD floating point instructions, Hollywood FIFO command processor, Wii NAND `/title/` save storage, WBFS/RVZ/GCM disc reader. | Cycle-Synchronous Broadway Bus Timing |
+| **Nintendo Wii U** | **Espresso Tri-Core PowerPC 750CL** (1.24 GHz), **Latte GX2 GPU** (AMD Radeon R700 @ 550 MHz), **Wii U GamePad**. | Multi-threaded Espresso core dispatcher, dual-display framebuffer rendering (TV + GamePad), MLC `/usr/save/` XML manager, WUD/WUX/RPX loader. | Multi-Core Symmetric Multi-Processing (SMP) |
 
 ---
 
@@ -173,6 +185,14 @@ OmniStation employs a **Tri-Tier Hybrid Architecture**:
   - `ps1_core.hpp` / `ps1_core.cpp`: MIPS R3000A CPU running at 33.8688 MHz with Geometry Transformation Engine (GTE) coprocessor. Integrates PGXP (Parallel Precision Geometry Transformation) to compute high-precision 32-bit floating-point vertices, eliminating PlayStation 1 polygon jitter and texture warping.
 - **`cores/snes_core/`**:
   - `snes_core.hpp` / `snes_core.cpp`: Cycle-stepped Ricoh 5A22 CPU emulation with full 65C816 opcode decoding, Mode 7 matrix transform calculations (affine scaling, rotation, shearing), and 8-channel SPC700 audio generation.
+- **`cores/psp_core/`**:
+  - `psp_core.hpp` / `psp_core.cpp`: Allegrex MIPS R4000 32-bit CPU running at 333 MHz with Vector Floating Point Unit (VFPU) 128-bit SIMD matrix math, 32MB main RAM, 2MB eDRAM Graphics Core rasterizer, and Memory Stick PRO Duo controller.
+- **`cores/psvita_core/`**:
+  - `psvita_core.hpp` / `psvita_core.cpp`: Quad-Core ARM Cortex-A9 MPCore with ARM NEON SIMD vectorization, PowerVR SGX543MP4+ command stream parsing, dual-analog stick input dispatch, and front/rear multi-touch digitizer coordinates.
+- **`cores/wii_core/`**:
+  - `wii_core.hpp` / `wii_core.cpp`: Broadway PowerPC 750CL CPU (729 MHz) featuring 64-bit Paired-Single SIMD vector extensions, Hollywood GX graphics FIFO rasterization (243 MHz), and Wiimote Bluetooth / IR optical pointer state tracking.
+- **`cores/wiiu_core/`**:
+  - `wiiu_core.hpp` / `wiiu_core.cpp`: Espresso Tri-Core PowerPC 750CL Symmetric Multi-Processing (SMP) scheduler (1.24 GHz), Latte GX2 programmable vertex/pixel shaders, dual-viewport rendering (TV 1080p + GamePad 854x480), and MLC virtual storage.
 - **`cores/gpu_backends/` & `native_gpu_bridge/`**:
   - Zero-copy native bridges for Apple Metal (`apple_texture_bridge.mm`, `IOSurfaceRef`) and Vulkan (`vulkan_renderer.cpp`, `VK_KHR_external_memory_fd`), rendering 4K internal resolutions with anisotropic filtering.
 

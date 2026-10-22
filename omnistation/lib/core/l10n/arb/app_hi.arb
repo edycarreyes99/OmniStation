@@ -12,6 +12,11 @@
   "platformPs1": "प्लेस्टेशन 1",
   "platformPs2": "प्लेस्टेशन 2",
   "platformPs3": "प्लेस्टेशन 3",
+  "platformPsp": "प्लेस्टेशन पोर्टेबल",
+  "platformPsVita": "प्लेस्टेशन वीटा",
+  "platformWii": "निंटेंडो वी",
+  "platformWiiU": "निंटेंडो वी यू",
+
   
   "statusReady": "तैयार",
   "statusRunning": "चालू है",

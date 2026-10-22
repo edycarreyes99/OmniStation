@@ -39,6 +39,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get platformPs3 => 'PlayStation 3';
 
   @override
+  String get platformPsp => 'PlayStation Portable';
+
+  @override
+  String get platformPsVita => 'PlayStation Vita';
+
+  @override
+  String get platformWii => 'Wii';
+
+  @override
+  String get platformWiiU => 'Wii U';
+
+  @override
   String get statusReady => '準備完了';
 
   @override

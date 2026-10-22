@@ -39,6 +39,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get platformPs3 => 'PlayStation 3';
 
   @override
+  String get platformPsp => 'PlayStation Portable';
+
+  @override
+  String get platformPsVita => 'PlayStation Vita';
+
+  @override
+  String get platformWii => '任天堂 Wii';
+
+  @override
+  String get platformWiiU => '任天堂 Wii U';
+
+  @override
   String get statusReady => '就绪';
 
   @override

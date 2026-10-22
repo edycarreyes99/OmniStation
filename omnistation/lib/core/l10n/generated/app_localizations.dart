@@ -180,6 +180,30 @@ abstract class AppLocalizations {
   /// **'PlayStation 3'**
   String get platformPs3;
 
+  /// No description provided for @platformPsp.
+  ///
+  /// In en, this message translates to:
+  /// **'PlayStation Portable'**
+  String get platformPsp;
+
+  /// No description provided for @platformPsVita.
+  ///
+  /// In en, this message translates to:
+  /// **'PlayStation Vita'**
+  String get platformPsVita;
+
+  /// No description provided for @platformWii.
+  ///
+  /// In en, this message translates to:
+  /// **'Nintendo Wii'**
+  String get platformWii;
+
+  /// No description provided for @platformWiiU.
+  ///
+  /// In en, this message translates to:
+  /// **'Nintendo Wii U'**
+  String get platformWiiU;
+
   /// No description provided for @statusReady.
   ///
   /// In en, this message translates to:
@@ -867,7 +891,7 @@ abstract class AppLocalizations {
   /// No description provided for @emptyLibraryDesc.
   ///
   /// In en, this message translates to:
-  /// **'Import ROMs or disc images (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin) to begin playing.'**
+  /// **'Import ROMs or disc images (.smc, .sfc, .msc, .iso, .zip, .pkg, .bin, .pbp, .cso, .vpk, .wbfs, .rvz, .wud, .rpx) to begin playing.'**
   String get emptyLibraryDesc;
 
   /// No description provided for @storageTotalAppSpace.

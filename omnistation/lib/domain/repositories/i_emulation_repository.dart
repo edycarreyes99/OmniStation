@@ -17,5 +17,12 @@ abstract interface class IEmulationRepository {
   Uint8List? getSnesPixels();
   void setSnesButton(int button, bool pressed);
   void stopSnes();
+
+  bool bootCore(ConsolePlatform platform, String path);
+  bool stepCoreFrame(ConsolePlatform platform);
+  Uint8List? getCorePixels(ConsolePlatform platform);
+  void setCoreButton(ConsolePlatform platform, int button, bool pressed);
+  void stopCore(ConsolePlatform platform);
+
   String getLastErrorDescription();
 }

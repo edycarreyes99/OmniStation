@@ -12,6 +12,11 @@
   "platformPs1": "PlayStation 1",
   "platformPs2": "PlayStation 2",
   "platformPs3": "PlayStation 3",
+  "platformPsp": "PlayStation Portable",
+  "platformPsVita": "PlayStation Vita",
+  "platformWii": "닌텐도 Wii",
+  "platformWiiU": "닌텐도 Wii U",
+
   
   "statusReady": "준비 완료",
   "statusRunning": "실행 중",

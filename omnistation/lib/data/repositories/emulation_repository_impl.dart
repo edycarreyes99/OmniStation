@@ -74,5 +74,24 @@ class EmulationRepositoryImpl implements IEmulationRepository {
   void stopSnes() => _dataSource.stopSnes();
 
   @override
+  bool bootCore(ConsolePlatform platform, String path) =>
+      _dataSource.bootCore(platform, path);
+
+  @override
+  bool stepCoreFrame(ConsolePlatform platform) =>
+      _dataSource.stepCoreFrame(platform);
+
+  @override
+  Uint8List? getCorePixels(ConsolePlatform platform) =>
+      _dataSource.getCorePixels(platform);
+
+  @override
+  void setCoreButton(ConsolePlatform platform, int button, bool pressed) =>
+      _dataSource.setCoreButton(platform, button, pressed);
+
+  @override
+  void stopCore(ConsolePlatform platform) => _dataSource.stopCore(platform);
+
+  @override
   String getLastErrorDescription() => _dataSource.getLastErrorDescription();
 }

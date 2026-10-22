@@ -32,6 +32,29 @@ union alignas(16) Vec128 {
 #endif
 };
 
+// Load/Store SIMD primitives
+[[nodiscard]] inline Vec128 Vec128Load(const float* ptr) noexcept {
+    Vec128 result;
+#if defined(OMNISTATION_ARCH_ARM64)
+    result.neon_f32 = vld1q_f32(ptr);
+#elif defined(OMNISTATION_ARCH_X86_64)
+    result.sse_f32 = _mm_loadu_ps(ptr);
+#else
+    for (int i = 0; i < 4; ++i) result.f32[i] = ptr[i];
+#endif
+    return result;
+}
+
+inline void Vec128Store(float* ptr, Vec128 val) noexcept {
+#if defined(OMNISTATION_ARCH_ARM64)
+    vst1q_f32(ptr, val.neon_f32);
+#elif defined(OMNISTATION_ARCH_X86_64)
+    _mm_storeu_ps(ptr, val.sse_f32);
+#else
+    for (int i = 0; i < 4; ++i) ptr[i] = val.f32[i];
+#endif
+}
+
 // Zero-overhead SIMD vector operations
 [[nodiscard]] inline Vec128 Vec128Add(Vec128 a, Vec128 b) noexcept {
     Vec128 result;
